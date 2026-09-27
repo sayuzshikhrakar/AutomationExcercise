@@ -1,0 +1,15 @@
+{
+    "WOMEN": [
+        "DRESS",
+        "TOPS",
+        "SAREE"
+    ],
+    "MEN": [
+        "TSHIRTS",
+        "JEANS"
+    ],
+    "KIDS": [
+        "DRESS",
+        "TOPS & SHIRTS"
+    ]
+}
