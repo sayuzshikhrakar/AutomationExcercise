@@ -32,8 +32,6 @@ setWorldConstructor(CustomWorld);
 
 let globalBrowser: Browser;
 
-setWorldConstructor(CustomWorld);
-
 BeforeAll(async function () {
     const browserType = process.env.BROWSER || 'chromium';
     const isHeadless = process.env.HEADLESS !== 'false';
