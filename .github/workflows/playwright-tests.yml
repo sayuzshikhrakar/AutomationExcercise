@@ -65,5 +65,4 @@ jobs:
         subject: Automation Test Results (${{ job.status }})
         to: sayuzshikhrakar@gmail.com,sayuz6819@gmail.com
         from: GitHub Actions
-        body: The Playwright test run has completed with status - ${{ job.status }}. Attached is the zipped HTML report. Please extract it and open index.html to view the full interactive dashboard.
-        attachments: playwright-report.zip
+        body:The Playwright test run has completed with status - ${{ job.status }}. You can view the full interactive dashboard here: https://sayuzshikhrakar.github.io/AutomationExcercise/
