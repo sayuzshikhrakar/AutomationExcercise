@@ -26,6 +26,14 @@ jobs:
     - name: Install Playwright Browsers
       # Only installing chromium to match the test script we are running
       run: npx playwright install --with-deps chromium
+
+    - name: Create .env.chromium file
+      run: |
+        echo "BROWSER=chromium" >> .env.chromium
+        echo "WEB_URL=https://automationexercise.com" >> .env.chromium
+        echo "HEADLESS=true" >> .env.chromium
+        echo "TEST_USER_EMAIL=${{ secrets.TEST_USER_EMAIL }}" >> .env.chromium
+        echo "TEST_USER_PASSWORD=${{ secrets.TEST_USER_PASSWORD }}" >> .env.chromium
       
     - name: Run Playwright tests
       run: npm run test:web:chromium
