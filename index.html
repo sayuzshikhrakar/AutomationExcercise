@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiple Cucumber HTML Reporter</title>
+<link
+  rel="icon"
+  type="image/x-icon"
+  href="./assets/images/logo.png"
+>
+<link rel="stylesheet" href="./styles.min.css">
+
+  <script src="./assets/js/apex-charts.js"></script>
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+
+    <script>
+      (function () {
+        const theme =
+          localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <div class="w-full">
+      <!-- Header -->
+      <header class="border-b bg-background px-4 md:px-6 py-4 sticky top-0 z-40 backdrop-blur supports-backdrop-filter:bg-background/60">
+  <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3 truncate">
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 overflow-hidden">
+        
+          <i class="fa-solid fa-vial-circle-check text-xl"></i>
+        
+      </div>
+      <div class="text-balance">
+        <h1 class="text-lg md:text-2xl font-bold text-foreground text-balance tracking-tight">
+          Multiple Cucumber HTML Reporter
+        </h1>
+        <p class="mt-0.5 text-[10px] md:text-xs text-muted-foreground uppercase font-bold tracking-widest opacity-70">
+          Multiple Cucumber HTML Reporter
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" class="p-2 rounded-md hover:bg-accent transition-colors shrink-0">
+        <svg id="sun-icon" class="hidden h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/>
+        </svg>
+        <svg id="moon-icon" class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+      <!-- Main Content -->
+      <main class="space-y-6 px-6 py-8">
+        <div class="mx-auto max-w-7xl">
+          
+  <div class="space-y-6">
+    <!-- Run Information Row -->
+    <div class="rounded-xl border bg-card text-card-foreground shadow p-4 md:p-6">
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+    <div class="flex flex-wrap items-center gap-6 md:gap-8 flex-1">
+      
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <div class="flex items-center gap-3 min-w-50">
+        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <i class="fa-solid fa-clock text-sm"></i>
+        </div>
+        <div class="truncate text-xs">
+          <p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Execution Period</p>
+          <div class="font-medium text-foreground flex items-center gap-2">
+            <span>2026/10/02 06:55:32</span>
+            <span class="opacity-40 italic font-normal ml-2">Duration:</span>
+            <span>00:00:52.020</span>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div class="flex items-center gap-3 min-w-30">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <i class="fa-solid fa-user text-sm"></i>
+          </div>
+          <div class="truncate">
+            <p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Username</p>
+            <p class="text-sm font-bold text-foreground truncate">runner</p>
+          </div>
+        </div>
+      
+
+      
+        <div class="flex items-center gap-3 min-w-30">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <i class="fa-brands fa-node-js text-sm"></i>
+          </div>
+          <div class="truncate">
+            <p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Node Version</p>
+            <p class="text-sm font-bold text-foreground truncate">v24.21.0</p>
+          </div>
+        </div>
+      
+
+      
+        <div class="flex items-center gap-3 min-w-30">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <i class="fa-solid fa-code-branch text-sm"></i>
+          </div>
+          <div class="truncate">
+            <p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Report Version</p>
+            <p class="text-sm font-bold text-foreground truncate">4.3.0</p>
+          </div>
+        </div>
+      
+
+      
+
+      
+        <div class="flex items-center gap-3 min-w-30">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <i class="fa-solid fa-microchip text-sm"></i>
+          </div>
+          <div class="truncate">
+            <p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Machine Arch</p>
+            <p class="text-sm font-bold text-foreground truncate">x64</p>
+          </div>
+        </div>
+      
+
+      
+    </div>
+  </div>
+</div>
+
+
+    <!-- Top row - Key metrics status -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Features Status</h3>
+        <div id="features-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Scenarios Status</h3>
+        <div id="scenarios-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Steps Status</h3>
+        <div id="steps-status-chart" class="h-64"></div>
+      </div>
+    </div>
+
+    <!-- Analytics Charts -->
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Device & OS</h3>
+        <div id="device-os-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Browsers</h3>
+        <div id="browser-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Top 10 Tags</h3>
+        <div id="tag-distribution-chart" class="h-64"></div>
+      </div>
+    </div>
+
+    <!-- Status Trend -->
+    <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+      <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Features Status Trend</h3>
+      <div id="status-trend-chart" class="h-80 w-full"></div>
+    </div>
+
+    <!-- Features Overview Table -->
+    <div class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden" id="features-table-container">
+  <div class="px-6 py-4 border-b flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <h3 class="text-lg font-semibold whitespace-nowrap">Features Overview</h3>
+    <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+      <div class="relative flex-1 md:w-64">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+        </span>
+        <input
+          type="text"
+          id="feature-search"
+          placeholder="Search features..."
+          class="w-full h-9 pl-9 pr-4 rounded-md border border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow shadow-sm"
+        >
+      </div>
+      <!-- Tag Filter Dropdown -->
+      <div class="relative w-full md:w-56" id="feature-tag-filter-container">
+        <button
+          type="button"
+          id="feature-tag-filter-button"
+          class="flex items-center justify-between w-full h-9 px-3 rounded-md border border-input bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-shadow shadow-sm cursor-pointer"
+        >
+          <span class="truncate text-muted-foreground text-xs" id="feature-tag-filter-label">Filter by tags...</span>
+          <i class="fa-solid fa-chevron-down text-[10px] text-muted-foreground ml-2"></i>
+        </button>
+        <div
+          id="feature-tag-filter-dropdown"
+          class="hidden absolute left-0 md:left-auto md:right-0 mt-1 w-full md:w-56 rounded-md border border-border bg-card text-card-foreground shadow-md z-50 max-h-60 overflow-y-auto p-1.5 space-y-1"
+        >
+          <!-- Dynamic tag options injected via JS -->
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-medium text-muted-foreground whitespace-nowrap">Show:</span>
+        <select
+          id="records-per-page"
+          class="h-9 px-2 rounded-md border border-input bg-background text-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-shadow shadow-sm min-w-17.5"
+        >
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-muted text-muted-foreground uppercase text-xs font-semibold">
+        <tr>
+          <th class="px-4 md:px-6 py-3 cursor-pointer hover:text-foreground transition-colors group">
+            <div class="flex items-center gap-1.5">
+              Feature Name
+              <i class="fa-solid fa-sort opacity-30 group-hover:opacity-100 text-[10px]"></i>
+            </div>
+          </th>
+          <th class="px-4 md:px-6 py-3">Environment</th>
+          <th class="px-4 md:px-6 py-3 cursor-pointer hover:text-foreground transition-colors group">
+            <div class="flex items-center gap-1.5">
+              Steps status
+              <i class="fa-solid fa-sort opacity-30 group-hover:opacity-100 text-[10px]"></i>
+            </div>
+          </th>
+          <th class="px-4 md:px-6 py-3 text-right cursor-pointer hover:text-foreground transition-colors group">
+            <div class="flex items-center justify-end gap-1.5">
+              Pass %
+              <i class="fa-solid fa-sort opacity-30 group-hover:opacity-100 text-[10px]"></i>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="features-table-body" class="divide-y divide-border">
+        
+        
+          <tr class="hover:bg-muted/50 transition-colors">
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap md:whitespace-normal min-w-50">
+              <a href="features/2775b04c-4192-4914-a811-d53e30a54e0b-cart-and-checkout.html" class="font-medium text-primary hover:underline">
+                Cart and Checkout
+              </a>
+              <div class="flex flex-wrap gap-1 mt-1">
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @web
+                  </span>
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @webcheckout
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap">
+              
+              
+              
+              
+
+              <div class="flex items-center gap-2.5 text-muted-foreground">
+                
+                <span title="Local Test Machine">
+                  <i
+                    class="fa-solid fa-desktop text-base"
+                  ></i>
+                </span>
+                
+                
+                  <span title="ubuntu 6.17.0-1022-azure">
+                    <i
+                      class="fa-brands fa-linux text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="chromium latest">
+                    <i
+                      class="fa-solid fa-globe text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="Local machine">
+                    <i class="fa-solid fa-computer text-base"></i>
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 min-w-60">
+              <div class="flex h-2 w-full overflow-hidden rounded-full bg-secondary">
+                
+                  <div
+                    class="h-full bg-status-passed"
+                    style="width: 100%"
+                  ></div>
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] font-medium uppercase">
+                <span class="text-status-passed">5 Passed</span>
+                <span class="text-status-failed">0 Failed</span>
+                
+                
+                
+                <span class="text-status-skipped">0 Skipped</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              
+              
+                
+              
+              <div class="inline-flex items-center justify-end relative h-12 w-12">
+                <svg class="h-12 w-12 transform -rotate-90">
+                  <circle class="text-muted/20" stroke-width="3" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                  <circle class="text-status-passed transition-all duration-500 ease-out" stroke-width="3"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                </svg>
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">100%</span
+                >
+              </div>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-muted/50 transition-colors">
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap md:whitespace-normal min-w-50">
+              <a href="features/388585b5-d133-4f87-ae65-c9bcece78882-contact-and-forms.html" class="font-medium text-primary hover:underline">
+                Contact and Forms
+              </a>
+              <div class="flex flex-wrap gap-1 mt-1">
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @web
+                  </span>
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @webcontactus
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap">
+              
+              
+              
+              
+
+              <div class="flex items-center gap-2.5 text-muted-foreground">
+                
+                <span title="Local Test Machine">
+                  <i
+                    class="fa-solid fa-desktop text-base"
+                  ></i>
+                </span>
+                
+                
+                  <span title="ubuntu 6.17.0-1022-azure">
+                    <i
+                      class="fa-brands fa-linux text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="chromium latest">
+                    <i
+                      class="fa-solid fa-globe text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="Local machine">
+                    <i class="fa-solid fa-computer text-base"></i>
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 min-w-60">
+              <div class="flex h-2 w-full overflow-hidden rounded-full bg-secondary">
+                
+                  <div
+                    class="h-full bg-status-passed"
+                    style="width: 100%"
+                  ></div>
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] font-medium uppercase">
+                <span class="text-status-passed">1 Passed</span>
+                <span class="text-status-failed">0 Failed</span>
+                
+                
+                
+                <span class="text-status-skipped">0 Skipped</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              
+              
+                
+              
+              <div class="inline-flex items-center justify-end relative h-12 w-12">
+                <svg class="h-12 w-12 transform -rotate-90">
+                  <circle class="text-muted/20" stroke-width="3" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                  <circle class="text-status-passed transition-all duration-500 ease-out" stroke-width="3"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                </svg>
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">100%</span
+                >
+              </div>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-muted/50 transition-colors">
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap md:whitespace-normal min-w-50">
+              <a href="features/ff305e81-4c02-4ffc-ac99-6d680815eb11-navigation-and-ui-behaviour.html" class="font-medium text-primary hover:underline">
+                Navigation and UI Behaviour
+              </a>
+              <div class="flex flex-wrap gap-1 mt-1">
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @web
+                  </span>
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @webnavigation
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap">
+              
+              
+              
+              
+
+              <div class="flex items-center gap-2.5 text-muted-foreground">
+                
+                <span title="Local Test Machine">
+                  <i
+                    class="fa-solid fa-desktop text-base"
+                  ></i>
+                </span>
+                
+                
+                  <span title="ubuntu 6.17.0-1022-azure">
+                    <i
+                      class="fa-brands fa-linux text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="chromium latest">
+                    <i
+                      class="fa-solid fa-globe text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="Local machine">
+                    <i class="fa-solid fa-computer text-base"></i>
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 min-w-60">
+              <div class="flex h-2 w-full overflow-hidden rounded-full bg-secondary">
+                
+                  <div
+                    class="h-full bg-status-passed"
+                    style="width: 100%"
+                  ></div>
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] font-medium uppercase">
+                <span class="text-status-passed">3 Passed</span>
+                <span class="text-status-failed">0 Failed</span>
+                
+                
+                
+                <span class="text-status-skipped">0 Skipped</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              
+              
+                
+              
+              <div class="inline-flex items-center justify-end relative h-12 w-12">
+                <svg class="h-12 w-12 transform -rotate-90">
+                  <circle class="text-muted/20" stroke-width="3" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                  <circle class="text-status-passed transition-all duration-500 ease-out" stroke-width="3"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                </svg>
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">100%</span
+                >
+              </div>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-muted/50 transition-colors">
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap md:whitespace-normal min-w-50">
+              <a href="features/13658bf8-9691-4454-800d-18d9194d250d-catalog---search.html" class="font-medium text-primary hover:underline">
+                Catalog & Search
+              </a>
+              <div class="flex flex-wrap gap-1 mt-1">
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @web
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap">
+              
+              
+              
+              
+
+              <div class="flex items-center gap-2.5 text-muted-foreground">
+                
+                <span title="Local Test Machine">
+                  <i
+                    class="fa-solid fa-desktop text-base"
+                  ></i>
+                </span>
+                
+                
+                  <span title="ubuntu 6.17.0-1022-azure">
+                    <i
+                      class="fa-brands fa-linux text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="chromium latest">
+                    <i
+                      class="fa-solid fa-globe text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="Local machine">
+                    <i class="fa-solid fa-computer text-base"></i>
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 min-w-60">
+              <div class="flex h-2 w-full overflow-hidden rounded-full bg-secondary">
+                
+                  <div
+                    class="h-full bg-status-passed"
+                    style="width: 100%"
+                  ></div>
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] font-medium uppercase">
+                <span class="text-status-passed">14 Passed</span>
+                <span class="text-status-failed">0 Failed</span>
+                
+                
+                
+                <span class="text-status-skipped">0 Skipped</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              
+              
+                
+              
+              <div class="inline-flex items-center justify-end relative h-12 w-12">
+                <svg class="h-12 w-12 transform -rotate-90">
+                  <circle class="text-muted/20" stroke-width="3" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                  <circle class="text-status-passed transition-all duration-500 ease-out" stroke-width="3"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                </svg>
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">100%</span
+                >
+              </div>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-muted/50 transition-colors">
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap md:whitespace-normal min-w-50">
+              <a href="features/ecfd5a81-1605-4bf9-bcc8-e63d42c127fa-subscription-and-newsletter.html" class="font-medium text-primary hover:underline">
+                Subscription and Newsletter
+              </a>
+              <div class="flex flex-wrap gap-1 mt-1">
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @web
+                  </span>
+                
+                  <span class="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                    @websubscription
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 whitespace-nowrap">
+              
+              
+              
+              
+
+              <div class="flex items-center gap-2.5 text-muted-foreground">
+                
+                <span title="Local Test Machine">
+                  <i
+                    class="fa-solid fa-desktop text-base"
+                  ></i>
+                </span>
+                
+                
+                  <span title="ubuntu 6.17.0-1022-azure">
+                    <i
+                      class="fa-brands fa-linux text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="chromium latest">
+                    <i
+                      class="fa-solid fa-globe text-base"
+                    ></i>
+                  </span>
+                
+                
+                
+                  <span title="Local machine">
+                    <i class="fa-solid fa-computer text-base"></i>
+                  </span>
+                
+              </div>
+            </td>
+            <td class="px-4 md:px-6 py-4 min-w-60">
+              <div class="flex h-2 w-full overflow-hidden rounded-full bg-secondary">
+                
+                  <div
+                    class="h-full bg-status-passed"
+                    style="width: 100%"
+                  ></div>
+                
+                
+                
+                
+                
+                
+              </div>
+              <div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] font-medium uppercase">
+                <span class="text-status-passed">2 Passed</span>
+                <span class="text-status-failed">0 Failed</span>
+                
+                
+                
+                <span class="text-status-skipped">0 Skipped</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              
+              
+                
+              
+              <div class="inline-flex items-center justify-end relative h-12 w-12">
+                <svg class="h-12 w-12 transform -rotate-90">
+                  <circle class="text-muted/20" stroke-width="3" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                  <circle class="text-status-passed transition-all duration-500 ease-out" stroke-width="3"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                </svg>
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">100%</span
+                >
+              </div>
+            </td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <div id="no-features-message" class="hidden py-12 text-center bg-muted/20 border-t border-border">
+    <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-muted mb-4">
+      <i class="fa-solid fa-magnifying-glass text-muted-foreground"></i>
+    </div>
+    <h4 class="text-sm font-semibold text-foreground">No feature found</h4>
+    <p class="text-xs text-muted-foreground mt-1">Try adjusting your filters or search terms.</p>
+  </div>
+
+  <!-- Pagination -->
+  <div class="px-6 py-4 border-t flex items-center justify-between text-xs text-muted-foreground bg-muted/20">
+    <div>
+      Showing <span id="showing-start" class="font-bold text-foreground">1</span> to
+      <span id="showing-end" class="font-bold text-foreground">10</span> of
+      <span id="total-records" class="font-bold text-foreground">5</span> entries
+    </div>
+    <div class="flex items-center gap-1" id="pagination-controls">
+      <button
+        id="prev-page"
+        disabled
+        class="h-8 w-8 flex items-center justify-center rounded border border-transparent text-foreground hover:bg-muted hover:border-border transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div id="page-numbers" class="flex items-center gap-1">
+        <!-- Page buttons will be injected here -->
+      </div>
+      <button
+        id="next-page"
+        
+          disabled
+        
+        class="h-8 w-8 flex items-center justify-center rounded border border-transparent text-foreground hover:bg-muted hover:border-border transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <script>
+    // Report-wide UI config (opt-in features toggled from the reporter options)
+    window.ReportConfig = Object.assign({}, window.ReportConfig, {
+        displayChartPercentages: false,
+        modalBackdrop: true,
+        modalDraggable: false,
+        modalResizable: false,
+        modalShowContext: false
+    });
+
+    // Embedded data for charts
+    const chartData = {
+        summary: {"ambiguous":0,"failed":0,"passed":5,"notDefined":0,"pending":0,"skipped":0,"total":5,"ambiguousPercentage":"0.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","pendingPercentage":"0.00","skippedPercentage":"0.00","passedPercentage":"100.00","steps":{"passed":0,"failed":0,"skipped":0,"total":0}},
+        scenarios: {"failed":0,"ambiguous":0,"notDefined":0,"pending":0,"skipped":0,"passed":25,"total":25,"ambiguousPercentage":"0.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","passedPercentage":"100.00","pendingPercentage":"0.00","skippedPercentage":"0.00"},
+        features: [{"description":"","elements":[{"description":"","id":"cart-and-checkout;add-products-in-cart","keyword":"Scenario","line":4,"name":"Add Products in Cart","steps":[{"result":{"status":"passed","duration":52933462},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1100149835},"arguments":[],"keyword":"Given ","line":5,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.100"},{"result":{"status":"passed","duration":331503893},"arguments":[],"keyword":"When ","line":6,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.331"},{"result":{"status":"passed","duration":102890738},"arguments":[],"keyword":"Then ","line":7,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.102"},{"result":{"status":"passed","duration":1010020314},"arguments":[],"keyword":"When ","line":8,"name":"I hover over the first product and click Add to cart","match":{"location":"tests/steps/webCart.steps.ts:5"},"time":"00:00:01.010"},{"result":{"status":"passed","duration":243170525},"arguments":[],"keyword":"And ","line":9,"name":"I click Continue Shopping button in the modal","match":{"location":"tests/steps/webCart.steps.ts:10"},"time":"00:00:00.243"},{"result":{"status":"passed","duration":986012657},"arguments":[],"keyword":"And ","line":10,"name":"I hover over the second product and click Add to cart","match":{"location":"tests/steps/webCart.steps.ts:15"},"time":"00:00:00.986"},{"result":{"status":"passed","duration":363303101},"arguments":[],"keyword":"And ","line":11,"name":"I click View Cart button in the modal","match":{"location":"tests/steps/webCart.steps.ts:20"},"time":"00:00:00.363"},{"result":{"status":"passed","duration":85305435},"arguments":[],"keyword":"Then ","line":12,"name":"I should verify both products are added to the cart","match":{"location":"tests/steps/webCart.steps.ts:25"},"time":"00:00:00.085"},{"result":{"status":"passed","duration":32873833},"arguments":[],"keyword":"And ","line":13,"name":"I should verify their prices, quantity, and total prices are correct","match":{"location":"tests/steps/webCart.steps.ts:30"},"time":"00:00:00.032"},{"result":{"status":"passed","duration":358780413},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"type":"scenario","duration":4.255230331,"time":"00:00:04.255","passed":9,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"cart-and-checkout;verify-product-quantity-in-cart","keyword":"Scenario","line":15,"name":"Verify Product Quantity in Cart","steps":[{"result":{"status":"passed","duration":37015743},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":841501570},"arguments":[],"keyword":"Given ","line":16,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.841"},{"result":{"status":"passed","duration":209805856},"arguments":[],"keyword":"When ","line":17,"name":"I click View Product on the first product","match":{"location":"tests/steps/webProducts.steps.ts:12"},"time":"00:00:00.209"},{"result":{"status":"passed","duration":68791447},"arguments":[],"keyword":"Then ","line":18,"name":"I should see the product detail page","match":{"location":"tests/steps/webProducts.steps.ts:17"},"time":"00:00:00.068"},{"result":{"status":"passed","duration":25152786},"arguments":[],"keyword":"When ","line":19,"name":"I increase the quantity to 4","match":{"location":"tests/steps/webCart.steps.ts:35"},"time":"00:00:00.025"},{"result":{"status":"passed","duration":56657293},"arguments":[],"keyword":"And ","line":20,"name":"I click Add to cart button","match":{"location":"tests/steps/webCart.steps.ts:40"},"time":"00:00:00.056"},{"result":{"status":"passed","duration":334054534},"arguments":[],"keyword":"And ","line":21,"name":"I click View Cart button in the modal","match":{"location":"tests/steps/webCart.steps.ts:20"},"time":"00:00:00.334"},{"result":{"status":"passed","duration":60217154},"arguments":[],"keyword":"Then ","line":22,"name":"I should verify the product is displayed in the cart with a quantity of 4","match":{"location":"tests/steps/webCart.steps.ts:45"},"time":"00:00:00.060"},{"result":{"status":"passed","duration":253076302},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"type":"scenario","duration":1.59618064,"time":"00:00:01.596","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"cart-and-checkout;remove-products-from-cart","keyword":"Scenario","line":24,"name":"Remove Products From Cart","steps":[{"result":{"status":"passed","duration":40568305},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":909018328},"arguments":[],"keyword":"Given ","line":25,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.909"},{"result":{"status":"passed","duration":229518223},"arguments":[],"keyword":"When ","line":26,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.229"},{"result":{"status":"passed","duration":1143339111},"arguments":[],"keyword":"And ","line":27,"name":"I hover over the first product and click Add to cart","match":{"location":"tests/steps/webCart.steps.ts:5"},"time":"00:00:01.143"},{"result":{"status":"passed","duration":347256212},"arguments":[],"keyword":"And ","line":28,"name":"I click View Cart button in the modal","match":{"location":"tests/steps/webCart.steps.ts:20"},"time":"00:00:00.347"},{"result":{"status":"passed","duration":57208983},"arguments":[],"keyword":"Then ","line":29,"name":"I should verify the product is added to the cart","match":{"location":"tests/steps/webCart.steps.ts:50"},"time":"00:00:00.057"},{"result":{"status":"passed","duration":54833427},"arguments":[],"keyword":"When ","line":30,"name":"I click the X button for the product","match":{"location":"tests/steps/webCart.steps.ts:55"},"time":"00:00:00.054"},{"result":{"status":"passed","duration":184286801},"arguments":[],"keyword":"Then ","line":31,"name":"I should verify that the product is removed from the cart","match":{"location":"tests/steps/webCart.steps.ts:60"},"time":"00:00:00.184"},{"result":{"status":"passed","duration":253095174},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"type":"scenario","duration":2.925461085,"time":"00:00:02.925","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"cart-and-checkout;search-products-and-verify-cart-after-login","keyword":"Scenario","line":33,"name":"Search Products and Verify Cart After Login","steps":[{"result":{"status":"passed","duration":39310003},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":953856375},"arguments":[],"keyword":"Given ","line":34,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.953"},{"result":{"status":"passed","duration":267550506},"arguments":[],"keyword":"When ","line":35,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.267"},{"result":{"status":"passed","duration":91958839},"arguments":[],"keyword":"Then ","line":36,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.091"},{"result":{"status":"passed","duration":275631756},"arguments":[],"keyword":"When ","line":37,"name":"I enter a product name and search","match":{"location":"tests/steps/webProducts.steps.ts:29"},"time":"00:00:00.275"},{"result":{"status":"passed","duration":73341397},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the SEARCHED PRODUCTS heading","match":{"location":"tests/steps/webProducts.steps.ts:37"},"time":"00:00:00.073"},{"result":{"status":"passed","duration":28295388},"arguments":[],"keyword":"And ","line":39,"name":"I should see all products related to the search","match":{"location":"tests/steps/webProducts.steps.ts:42"},"time":"00:00:00.028"},{"result":{"status":"passed","duration":44772306},"arguments":[],"keyword":"When ","line":40,"name":"I add searched products to the cart","match":{"location":"tests/steps/webCart.steps.ts:66"},"time":"00:00:00.044"},{"result":{"status":"passed","duration":349788942},"arguments":[],"keyword":"And ","line":41,"name":"I click View Cart button in the modal","match":{"location":"tests/steps/webCart.steps.ts:20"},"time":"00:00:00.349"},{"result":{"status":"passed","duration":62061862},"arguments":[],"keyword":"Then ","line":42,"name":"I should verify the product is added to the cart","match":{"location":"tests/steps/webCart.steps.ts:50"},"time":"00:00:00.062"},{"result":{"status":"passed","duration":404971387},"arguments":[],"keyword":"When ","line":43,"name":"I navigate to login page and login with valid credentials","match":{"location":"tests/steps/webCart.steps.ts:71"},"time":"00:00:00.404"},{"result":{"status":"passed","duration":256848329},"arguments":[],"keyword":"And ","line":44,"name":"I navigate to the Cart page","match":{"location":"tests/steps/webCart.steps.ts:78"},"time":"00:00:00.256"},{"result":{"status":"passed","duration":59085329},"arguments":[],"keyword":"Then ","line":45,"name":"I should verify the same products are still visible in the cart after login","match":{"location":"tests/steps/webCart.steps.ts:83"},"time":"00:00:00.059"},{"result":{"status":"passed","duration":247950117},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"type":"scenario","duration":2.868162416,"time":"00:00:02.868","passed":12,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"cart-and-checkout;add-to-cart-from-recommended-items","keyword":"Scenario","line":47,"name":"Add to Cart from Recommended Items","steps":[{"result":{"status":"passed","duration":41879187},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":925581207},"arguments":[],"keyword":"Given ","line":48,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.925"},{"result":{"status":"passed","duration":12036143},"arguments":[],"keyword":"When ","line":49,"name":"I scroll to the bottom of the page","match":{"location":"tests/steps/webCart.steps.ts:88"},"time":"00:00:00.012"},{"result":{"status":"passed","duration":41976499},"arguments":[],"keyword":"Then ","line":50,"name":"I should verify RECOMMENDED ITEMS section is visible","match":{"location":"tests/steps/webCart.steps.ts:93"},"time":"00:00:00.041"},{"result":{"status":"passed","duration":5736119645},"arguments":[],"keyword":"When ","line":51,"name":"I click Add To Cart on a recommended product","match":{"location":"tests/steps/webCart.steps.ts:98"},"time":"00:00:05.736"},{"result":{"status":"passed","duration":982941773},"arguments":[],"keyword":"And ","line":52,"name":"I click View Cart button in the modal","match":{"location":"tests/steps/webCart.steps.ts:20"},"time":"00:00:00.982"},{"result":{"status":"passed","duration":65332918},"arguments":[],"keyword":"Then ","line":53,"name":"I should verify the product is displayed in the cart page","match":{"location":"tests/steps/webCart.steps.ts:103"},"time":"00:00:00.065"},{"result":{"status":"passed","duration":307697404},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"type":"scenario","duration":7.7639881850000005,"time":"00:00:07.763","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"2775b04c-4192-4914-a811-d53e30a54e0b-cart-and-checkout","line":2,"keyword":"Feature","name":"Cart and Checkout","tags":[{"name":"@web","line":1},{"name":"@webcheckout","line":1}],"uri":"tests/feature/webCartAndCheckout.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervm8df0l","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/2/2026, 6:55:32 AM"}]}},"scenarios":{"passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"100.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":5},"duration":19409022657,"time":"00:00:19.409","isFailed":false,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":19409022657,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"},{"description":"","elements":[{"description":"","id":"contact-and-forms;contact-us-form-submission","keyword":"Scenario","line":4,"name":"Contact Us Form Submission","steps":[{"result":{"status":"passed","duration":39839520},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":933749997},"arguments":[],"keyword":"Given ","line":5,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.933"},{"result":{"status":"passed","duration":192350652},"arguments":[],"keyword":"When ","line":6,"name":"I click on Contact Us button in the navbar","match":{"location":"tests/steps/webContactUs.steps.ts:6"},"time":"00:00:00.192"},{"result":{"status":"passed","duration":63899248},"arguments":[],"keyword":"Then ","line":7,"name":"I should see the GET IN TOUCH heading","match":{"location":"tests/steps/webContactUs.steps.ts:11"},"time":"00:00:00.063"},{"result":{"status":"passed","duration":656473919},"arguments":[],"keyword":"When ","line":8,"name":"I submit the contact form with valid details and an attachment","match":{"location":"tests/steps/webContactUs.steps.ts:16"},"time":"00:00:00.656"},{"result":{"status":"passed","duration":10908273},"arguments":[],"keyword":"Then ","line":9,"name":"I should see the success message \"Success! Your details have been submitted successfully.\"","match":{"location":"tests/steps/webContactUs.steps.ts:30"},"time":"00:00:00.010"},{"result":{"status":"passed","duration":385544335},"arguments":[],"keyword":"When ","line":10,"name":"I click the Home button","match":{"location":"tests/steps/webContactUs.steps.ts:35"},"time":"00:00:00.385"},{"result":{"status":"passed","duration":118395840},"arguments":[],"keyword":"Then ","line":11,"name":"I should be navigated to the web home page","match":{"location":"tests/steps/webContactUs.steps.ts:40"},"time":"00:00:00.118"},{"result":{"status":"passed","duration":290889452},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webcontactus","line":1}],"type":"scenario","duration":2.361322264,"time":"00:00:02.361","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"388585b5-d133-4f87-ae65-c9bcece78882-contact-and-forms","line":2,"keyword":"Feature","name":"Contact and Forms","tags":[{"name":"@web","line":1},{"name":"@webcontactus","line":1}],"uri":"tests/feature/webContactUs.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervm8df0l","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/2/2026, 6:55:32 AM"}]}},"scenarios":{"passed":1,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"100.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":1},"duration":2361322264,"time":"00:00:02.361","isFailed":false,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":1,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":2361322264,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"},{"description":"","elements":[{"description":"","id":"navigation-and-ui-behaviour;verify-test-cases-page","keyword":"Scenario","line":4,"name":"Verify Test Cases Page","steps":[{"result":{"status":"passed","duration":38659607},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":921774240},"arguments":[],"keyword":"Given ","line":5,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.921"},{"result":{"status":"passed","duration":229769517},"arguments":[],"keyword":"When ","line":6,"name":"I click on the Test Cases button in the navbar","match":{"location":"tests/steps/webNavigation.steps.ts:5"},"time":"00:00:00.229"},{"result":{"status":"passed","duration":85831521},"arguments":[],"keyword":"Then ","line":7,"name":"I should be navigated to the Test Cases page","match":{"location":"tests/steps/webNavigation.steps.ts:10"},"time":"00:00:00.085"},{"result":{"status":"passed","duration":203993985},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webnavigation","line":1}],"type":"scenario","duration":1.237375278,"time":"00:00:01.237","passed":3,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"navigation-and-ui-behaviour;verify-scroll-up-using-arrow-button-and-scroll-down-functionality","keyword":"Scenario","line":9,"name":"Verify Scroll Up using Arrow Button and Scroll Down Functionality","steps":[{"result":{"status":"passed","duration":39475222},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":718108027},"arguments":[],"keyword":"Given ","line":10,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.718"},{"result":{"status":"passed","duration":18338897},"arguments":[],"keyword":"When ","line":11,"name":"I scroll down to the bottom of the page","match":{"location":"tests/steps/webNavigation.steps.ts:15"},"time":"00:00:00.018"},{"result":{"status":"passed","duration":42280249},"arguments":[],"keyword":"Then ","line":12,"name":"I should see the SUBSCRIPTION heading in the footer","match":{"location":"tests/steps/webNavigation.steps.ts:20"},"time":"00:00:00.042"},{"result":{"status":"passed","duration":856539616},"arguments":[],"keyword":"When ","line":13,"name":"I click the scroll-up arrow button","match":{"location":"tests/steps/webNavigation.steps.ts:25"},"time":"00:00:00.856"},{"result":{"status":"passed","duration":11890096},"arguments":[],"keyword":"Then ","line":14,"name":"I should see the hero text at the top of the page","match":{"location":"tests/steps/webNavigation.steps.ts:35"},"time":"00:00:00.011"},{"result":{"status":"passed","duration":233556943},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webnavigation","line":1}],"type":"scenario","duration":1.647156885,"time":"00:00:01.647","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"navigation-and-ui-behaviour;verify-scroll-up-without-arrow-button-and-scroll-down-functionality","keyword":"Scenario","line":16,"name":"Verify Scroll Up without Arrow Button and Scroll Down Functionality","steps":[{"result":{"status":"passed","duration":42439333},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":918043642},"arguments":[],"keyword":"Given ","line":17,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.918"},{"result":{"status":"passed","duration":16966653},"arguments":[],"keyword":"When ","line":18,"name":"I scroll down to the bottom of the page","match":{"location":"tests/steps/webNavigation.steps.ts:15"},"time":"00:00:00.016"},{"result":{"status":"passed","duration":38905419},"arguments":[],"keyword":"Then ","line":19,"name":"I should see the SUBSCRIPTION heading in the footer","match":{"location":"tests/steps/webNavigation.steps.ts:20"},"time":"00:00:00.038"},{"result":{"status":"passed","duration":422390294},"arguments":[],"keyword":"When ","line":20,"name":"I scroll back to the top of the page without using the arrow button","match":{"location":"tests/steps/webNavigation.steps.ts:30"},"time":"00:00:00.422"},{"result":{"status":"passed","duration":12309753},"arguments":[],"keyword":"Then ","line":21,"name":"I should see the hero text at the top of the page","match":{"location":"tests/steps/webNavigation.steps.ts:35"},"time":"00:00:00.012"},{"result":{"status":"passed","duration":259665011},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@webnavigation","line":1}],"type":"scenario","duration":1.408615761,"time":"00:00:01.408","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"ff305e81-4c02-4ffc-ac99-6d680815eb11-navigation-and-ui-behaviour","line":2,"keyword":"Feature","name":"Navigation and UI Behaviour","tags":[{"name":"@web","line":1},{"name":"@webnavigation","line":1}],"uri":"tests/feature/webNavigation.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervm8df0l","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/2/2026, 6:55:32 AM"}]}},"scenarios":{"passed":3,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"100.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":3},"duration":4293147924,"time":"00:00:04.293","isFailed":false,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":3,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":4293147924,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"},{"description":"","elements":[{"description":"","id":"catalog-&-search;verify-all-products-and-product-detail-page","keyword":"Scenario","line":4,"name":"Verify All Products and Product Detail Page","steps":[{"result":{"status":"passed","duration":54453036},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1061209823},"arguments":[],"keyword":"Given ","line":5,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.061"},{"result":{"status":"passed","duration":299891685},"arguments":[],"keyword":"When ","line":6,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.299"},{"result":{"status":"passed","duration":86103949},"arguments":[],"keyword":"Then ","line":7,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.086"},{"result":{"status":"passed","duration":87187556},"arguments":[],"keyword":"Then ","line":8,"name":"I should see the product list","match":{"location":"tests/steps/webProducts.steps.ts:7"},"time":"00:00:00.087"},{"result":{"status":"passed","duration":228483366},"arguments":[],"keyword":"Then ","line":9,"name":"I click View Product on the first product","match":{"location":"tests/steps/webProducts.steps.ts:12"},"time":"00:00:00.228"},{"result":{"status":"passed","duration":82683977},"arguments":[],"keyword":"Then ","line":10,"name":"I should see the product detail page","match":{"location":"tests/steps/webProducts.steps.ts:17"},"time":"00:00:00.082"},{"result":{"status":"passed","duration":68402126},"arguments":[],"keyword":"Then ","line":11,"name":"I should see product name, category, price, availability, condition, and brand","match":{"location":"tests/steps/webProducts.steps.ts:22"},"time":"00:00:00.068"},{"result":{"status":"passed","duration":211691960},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.9139624819999999,"time":"00:00:01.913","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;search-product","keyword":"Scenario","line":13,"name":"Search Product","steps":[{"result":{"status":"passed","duration":38583234},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":772051153},"arguments":[],"keyword":"Given ","line":14,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.772"},{"result":{"status":"passed","duration":279843348},"arguments":[],"keyword":"When ","line":15,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.279"},{"result":{"status":"passed","duration":92738238},"arguments":[],"keyword":"Then ","line":16,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.092"},{"result":{"status":"passed","duration":299258127},"arguments":[],"keyword":"When ","line":17,"name":"I enter a product name and search","match":{"location":"tests/steps/webProducts.steps.ts:29"},"time":"00:00:00.299"},{"result":{"status":"passed","duration":75963728},"arguments":[],"keyword":"Then ","line":18,"name":"I should see the SEARCHED PRODUCTS heading","match":{"location":"tests/steps/webProducts.steps.ts:37"},"time":"00:00:00.075"},{"result":{"status":"passed","duration":31143072},"arguments":[],"keyword":"And ","line":19,"name":"I should see all products related to the search","match":{"location":"tests/steps/webProducts.steps.ts:42"},"time":"00:00:00.031"},{"result":{"status":"passed","duration":201906222},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.550997666,"time":"00:00:01.550","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":31,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":46228663},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":969246373},"arguments":[],"keyword":"Given ","line":22,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.969"},{"result":{"status":"passed","duration":242994595},"arguments":[],"keyword":"When ","line":23,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.242"},{"result":{"status":"passed","duration":95031581},"arguments":[],"keyword":"Then ","line":24,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.095"},{"result":{"status":"passed","duration":24727285},"arguments":[],"keyword":"Then ","line":25,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"},"time":"00:00:00.024"},{"result":{"status":"passed","duration":314188418},"arguments":[],"keyword":"When ","line":26,"name":"I click on the \"WOMEN\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"},"time":"00:00:00.314"},{"result":{"status":"passed","duration":85852833},"arguments":[],"keyword":"Then ","line":27,"name":"I should see the \"WOMEN\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"},"time":"00:00:00.085"},{"result":{"status":"passed","duration":206032192},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.732041085,"time":"00:00:01.732","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":32,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":40879614},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":879943307},"arguments":[],"keyword":"Given ","line":22,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.879"},{"result":{"status":"passed","duration":277119533},"arguments":[],"keyword":"When ","line":23,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.277"},{"result":{"status":"passed","duration":102147106},"arguments":[],"keyword":"Then ","line":24,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.102"},{"result":{"status":"passed","duration":21422314},"arguments":[],"keyword":"Then ","line":25,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"},"time":"00:00:00.021"},{"result":{"status":"passed","duration":288721060},"arguments":[],"keyword":"When ","line":26,"name":"I click on the \"MEN\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"},"time":"00:00:00.288"},{"result":{"status":"passed","duration":99826475},"arguments":[],"keyword":"Then ","line":27,"name":"I should see the \"MEN\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"},"time":"00:00:00.099"},{"result":{"status":"passed","duration":259067933},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.669179795,"time":"00:00:01.669","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":33,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":52753714},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":523375454},"arguments":[],"keyword":"Given ","line":22,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.523"},{"result":{"status":"passed","duration":260603671},"arguments":[],"keyword":"When ","line":23,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.260"},{"result":{"status":"passed","duration":107476776},"arguments":[],"keyword":"Then ","line":24,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.107"},{"result":{"status":"passed","duration":32963428},"arguments":[],"keyword":"Then ","line":25,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"},"time":"00:00:00.032"},{"result":{"status":"passed","duration":386575784},"arguments":[],"keyword":"When ","line":26,"name":"I click on the \"KIDS\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"},"time":"00:00:00.386"},{"result":{"status":"passed","duration":121727892},"arguments":[],"keyword":"Then ","line":27,"name":"I should see the \"KIDS\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"},"time":"00:00:00.121"},{"result":{"status":"passed","duration":215442304},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.4327230050000002,"time":"00:00:01.432","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":44,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":43766289},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":827013477},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.827"},{"result":{"status":"passed","duration":269615523},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.269"},{"result":{"status":"passed","duration":98818607},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.098"},{"result":{"status":"passed","duration":320108462},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"POLO\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.320"},{"result":{"status":"passed","duration":98092103},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"POLO\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.098"},{"result":{"status":"passed","duration":307947366},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.613648172,"time":"00:00:01.613","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":45,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":43911218},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1063231793},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.063"},{"result":{"status":"passed","duration":258913021},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.258"},{"result":{"status":"passed","duration":87808193},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.087"},{"result":{"status":"passed","duration":297057098},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"H&M\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.297"},{"result":{"status":"passed","duration":79100024},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"H&M\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.079"},{"result":{"status":"passed","duration":237390743},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.7861101289999999,"time":"00:00:01.786","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":46,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":43095091},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1005054376},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.005"},{"result":{"status":"passed","duration":286387106},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.286"},{"result":{"status":"passed","duration":91206237},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.091"},{"result":{"status":"passed","duration":398080201},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"MADAME\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.398"},{"result":{"status":"passed","duration":71689702},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"MADAME\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.071"},{"result":{"status":"passed","duration":278165459},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.852417622,"time":"00:00:01.852","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":47,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":42273052},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":727412725},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.727"},{"result":{"status":"passed","duration":230747551},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.230"},{"result":{"status":"passed","duration":99297548},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.099"},{"result":{"status":"passed","duration":325617098},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"MAST & HARBOUR\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.325"},{"result":{"status":"passed","duration":72186246},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"MAST & HARBOUR\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.072"},{"result":{"status":"passed","duration":254194307},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.455261168,"time":"00:00:01.455","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":48,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":42147006},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":686033760},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.686"},{"result":{"status":"passed","duration":255334254},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.255"},{"result":{"status":"passed","duration":93125213},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.093"},{"result":{"status":"passed","duration":290386559},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"BABYHUG\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.290"},{"result":{"status":"passed","duration":82450953},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"BABYHUG\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.082"},{"result":{"status":"passed","duration":227701242},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.407330739,"time":"00:00:01.407","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":49,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":45649244},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":646523810},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.646"},{"result":{"status":"passed","duration":269663692},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.269"},{"result":{"status":"passed","duration":100246947},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.100"},{"result":{"status":"passed","duration":341560030},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"ALLEN SOLLY JUNIOR\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.341"},{"result":{"status":"passed","duration":78496924},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"ALLEN SOLLY JUNIOR\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.078"},{"result":{"status":"passed","duration":228230990},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.436491403,"time":"00:00:01.436","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":50,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":48464841},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":778323229},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.778"},{"result":{"status":"passed","duration":293007086},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.293"},{"result":{"status":"passed","duration":98739143},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.098"},{"result":{"status":"passed","duration":347408544},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"KOOKIE KIDS\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.347"},{"result":{"status":"passed","duration":82742239},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"KOOKIE KIDS\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.082"},{"result":{"status":"passed","duration":227580771},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.600220241,"time":"00:00:01.600","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":51,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":43315905},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1743179887},"arguments":[],"keyword":"Given ","line":36,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.743"},{"result":{"status":"passed","duration":254533314},"arguments":[],"keyword":"When ","line":37,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.254"},{"result":{"status":"passed","duration":97070404},"arguments":[],"keyword":"Then ","line":38,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.097"},{"result":{"status":"passed","duration":388827201},"arguments":[],"keyword":"When ","line":39,"name":"I click on a \"BIBA\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.388"},{"result":{"status":"passed","duration":80181292},"arguments":[],"keyword":"Then ","line":40,"name":"I should be navigated to that \"BIBA\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.080"},{"result":{"status":"passed","duration":265946745},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":2.563792098,"time":"00:00:02.563","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;add-review-on-product","keyword":"Scenario","line":53,"name":"Add Review on Product","steps":[{"result":{"status":"passed","duration":51841587},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":776538101},"arguments":[],"keyword":"Given ","line":54,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.776"},{"result":{"status":"passed","duration":286753588},"arguments":[],"keyword":"When ","line":55,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.286"},{"result":{"status":"passed","duration":96107073},"arguments":[],"keyword":"Then ","line":56,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.096"},{"result":{"status":"passed","duration":266533638},"arguments":[],"keyword":"When ","line":57,"name":"I click View Product on the first product","match":{"location":"tests/steps/webProducts.steps.ts:12"},"time":"00:00:00.266"},{"result":{"status":"passed","duration":92784568},"arguments":[],"keyword":"Then ","line":58,"name":"I should see the Write Your Review section","match":{"location":"tests/steps/webProducts.steps.ts:93"},"time":"00:00:00.092"},{"result":{"status":"passed","duration":82327871},"arguments":[],"keyword":"When ","line":59,"name":"I submit a review with name, email, and review text","match":{"location":"tests/steps/webProducts.steps.ts:98"},"time":"00:00:00.082"},{"result":{"status":"passed","duration":9209238},"arguments":[],"keyword":"Then ","line":60,"name":"I should see the review success message","match":{"location":"tests/steps/webProducts.steps.ts:104"},"time":"00:00:00.009"},{"result":{"status":"passed","duration":214313879},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1}],"type":"scenario","duration":1.610254077,"time":"00:00:01.610","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"13658bf8-9691-4454-800d-18d9194d250d-catalog---search","line":2,"keyword":"Feature","name":"Catalog & Search","tags":[{"name":"@web","line":1}],"uri":"tests/feature/webProductPage.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervm8df0l","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/2/2026, 6:55:32 AM"}]}},"scenarios":{"passed":14,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"100.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":14},"duration":23624429682,"time":"00:00:23.624","isFailed":false,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":14,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":23624429682,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"},{"description":"","elements":[{"description":"","id":"subscription-and-newsletter;verify-subscription-in-home-page","keyword":"Scenario","line":4,"name":"Verify Subscription in Home Page","steps":[{"result":{"status":"passed","duration":40458916},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":975033472},"arguments":[],"keyword":"Given ","line":5,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.975"},{"result":{"status":"passed","duration":82726464},"arguments":[],"keyword":"When ","line":6,"name":"I scroll down to the footer section","match":{"location":"tests/steps/webSubscription.steps.ts:5"},"time":"00:00:00.082"},{"result":{"status":"passed","duration":14174603},"arguments":[],"keyword":"Then ","line":7,"name":"I should see the SUBSCRIPTION heading","match":{"location":"tests/steps/webSubscription.steps.ts:10"},"time":"00:00:00.014"},{"result":{"status":"passed","duration":87382438},"arguments":[],"keyword":"When ","line":8,"name":"I enter a valid email address and click the subscribe button","match":{"location":"tests/steps/webSubscription.steps.ts:15"},"time":"00:00:00.087"},{"result":{"status":"passed","duration":11135264},"arguments":[],"keyword":"Then ","line":9,"name":"I should see the subscription success message","match":{"location":"tests/steps/webSubscription.steps.ts:21"},"time":"00:00:00.011"},{"result":{"status":"passed","duration":166931957},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@websubscription","line":1}],"type":"scenario","duration":1.170452241,"time":"00:00:01.170","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"subscription-and-newsletter;verify-subscription-in-cart-page","keyword":"Scenario","line":11,"name":"Verify Subscription in Cart Page","steps":[{"result":{"status":"passed","duration":37907396},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":800865131},"arguments":[],"keyword":"Given ","line":12,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.800"},{"result":{"status":"passed","duration":193797303},"arguments":[],"keyword":"When ","line":13,"name":"I navigate to the Cart page","match":{"location":"tests/steps/webCart.steps.ts:78"},"time":"00:00:00.193"},{"result":{"status":"passed","duration":102943295},"arguments":[],"keyword":"When ","line":14,"name":"I scroll down to the footer section","match":{"location":"tests/steps/webSubscription.steps.ts:5"},"time":"00:00:00.102"},{"result":{"status":"passed","duration":6224076},"arguments":[],"keyword":"Then ","line":15,"name":"I should see the SUBSCRIPTION heading","match":{"location":"tests/steps/webSubscription.steps.ts:10"},"time":"00:00:00.006"},{"result":{"status":"passed","duration":52717938},"arguments":[],"keyword":"When ","line":16,"name":"I enter a valid email address and click the subscribe button","match":{"location":"tests/steps/webSubscription.steps.ts:15"},"time":"00:00:00.052"},{"result":{"status":"passed","duration":5686080},"arguments":[],"keyword":"Then ","line":17,"name":"I should see the subscription success message","match":{"location":"tests/steps/webSubscription.steps.ts:21"},"time":"00:00:00.005"},{"result":{"status":"passed","duration":204488494},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@websubscription","line":1}],"type":"scenario","duration":1.162233823,"time":"00:00:01.162","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"ecfd5a81-1605-4bf9-bcc8-e63d42c127fa-subscription-and-newsletter","line":2,"keyword":"Feature","name":"Subscription and Newsletter","tags":[{"name":"@web","line":1},{"name":"@websubscription","line":1}],"uri":"tests/feature/webSubscription.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervm8df0l","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/2/2026, 6:55:32 AM"}]}},"scenarios":{"passed":2,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"100.00","failedPercentage":"0.00","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":2},"duration":2332686064,"time":"00:00:02.332","isFailed":false,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":2,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":2332686064,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"}]
+    };
+  </script>
+
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t bg-background px-6 py-4 mt-8">
+  <div class="mx-auto max-w-7xl text-center">
+    
+      <p class="text-xs text-muted-foreground">
+        Generated by
+        <a
+          href="https://github.com/WasiqB/multiple-cucumber-html-reporter"
+          target="_blank"
+          class="text-primary hover:underline"
+          >Multiple Cucumber HTML Reporter</a
+        >
+      </p>
+      <p class="text-xs text-muted-foreground mt-2">
+        Built with ❤️ by
+        <a href="https://wasiqbhamla.com/" target="_blank" class="text-primary hover:underline font-semibold"
+          >Wasiq Bhamla</a
+        >
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://github.com/WasiqB"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-github mr-0.5"></i
+        ></a>
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://x.com/WasiqBhamla"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-x-twitter mr-0.5"></i
+        ></a>
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://www.linkedin.com/in/wasiqbhamla/"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-linkedin mr-0.5"></i
+        ></a>
+      </p>
+    
+  </div>
+</footer>
+
+    </div>
+
+    <!-- Media Modal -->
+    
+
+
+
+
+  <div
+    id="media-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    onclick="closeModal()"
+  >
+    <div
+      class="relative w-full max-w-4xl max-h-[90vh] bg-background rounded-lg shadow-lg flex flex-col overflow-hidden"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b p-4 text-card-foreground">
+        <h2 id="modal-title" class="text-lg font-semibold truncate mr-4">Attachment</h2>
+        <button onclick="closeModal()" class="rounded-lg p-1 hover:bg-muted transition-colors">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div id="modal-content" class="overflow-auto flex-1 p-4 bg-muted/10">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+
+
+    <script src="./scripts/utils.js"></script>
+<script src="./scripts/theme.js"></script>
+<script src="./scripts/modal.js"></script>
+<script src="./scripts/charts.js"></script>
+<script src="./scripts/table.js"></script>
+<script src="./scripts/scenarios.js"></script>
+<script src="./scripts/main.js"></script>
+
+
+  </body>
+</html>
