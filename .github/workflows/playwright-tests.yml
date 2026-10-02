@@ -50,6 +50,14 @@ jobs:
         path: reports/html-chromium/
         retention-days: 30
 
+    - name: Deploy Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: reports/html-chromium/
+        keep_files: true
+
     - name: Zip the HTML report
       if: always()
       run: zip -r playwright-report.zip reports/html-chromium/
