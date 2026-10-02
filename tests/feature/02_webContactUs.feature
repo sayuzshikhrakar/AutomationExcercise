@@ -1,6 +1,7 @@
 @web @webcontactus
 Feature: Contact and Forms
 
+  @smoke @sanity @regression
   Scenario: Contact Us Form Submission
     Given I am on the web home page
     When I click on Contact Us button in the navbar

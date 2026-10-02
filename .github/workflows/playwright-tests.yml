@@ -36,11 +36,11 @@ jobs:
         echo "TEST_USER_PASSWORD=${{ secrets.TEST_USER_PASSWORD }}" >> .env.chromium
       
     - name: Run Playwright tests
-      run: npm run test:web:chromium
-      
+      run: npm run test:all
+
     - name: Generate HTML Report
       if: always() # Ensures the report is generated even if the tests fail
-      run: npm run report:chromium
+      run: npm run report:generate
       
     - name: Upload HTML report
       uses: actions/upload-artifact@v4

@@ -1,11 +1,13 @@
 @web @webnavigation
 Feature: Navigation and UI Behaviour
 
+  @smoke @sanity @regression
   Scenario: Verify Test Cases Page
     Given I am on the web home page
     When I click on the Test Cases button in the navbar
     Then I should be navigated to the Test Cases page
 
+  @sanity @regression
   Scenario: Verify Scroll Up using Arrow Button and Scroll Down Functionality
     Given I am on the web home page
     When I scroll down to the bottom of the page
@@ -13,6 +15,7 @@ Feature: Navigation and UI Behaviour
     When I click the scroll-up arrow button
     Then I should see the hero text at the top of the page
 
+  @regression
   Scenario: Verify Scroll Up without Arrow Button and Scroll Down Functionality
     Given I am on the web home page
     When I scroll down to the bottom of the page

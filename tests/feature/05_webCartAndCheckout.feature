@@ -1,6 +1,7 @@
 @web @webcheckout
 Feature: Cart and Checkout
 
+  @smoke @sanity @regression
   Scenario: Add Products in Cart
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -12,6 +13,7 @@ Feature: Cart and Checkout
     Then I should verify both products are added to the cart
     And I should verify their prices, quantity, and total prices are correct
 
+  @sanity @regression
   Scenario: Verify Product Quantity in Cart
     Given I am on the web home page
     When I click View Product on the first product
@@ -21,6 +23,7 @@ Feature: Cart and Checkout
     And I click View Cart button in the modal
     Then I should verify the product is displayed in the cart with a quantity of 4
 
+  @sanity @regression
   Scenario: Remove Products From Cart
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -30,6 +33,7 @@ Feature: Cart and Checkout
     When I click the X button for the product
     Then I should verify that the product is removed from the cart
 
+  @smoke @regression
   Scenario: Search Products and Verify Cart After Login
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -44,6 +48,7 @@ Feature: Cart and Checkout
     And I navigate to the Cart page
     Then I should verify the same products are still visible in the cart after login
 
+  @regression
   Scenario: Add to Cart from Recommended Items
     Given I am on the web home page
     When I scroll to the bottom of the page

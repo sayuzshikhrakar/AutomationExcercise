@@ -1,6 +1,7 @@
 @web
 Feature: Catalog & Search
 
+  @smoke @sanity @regression
   Scenario: Verify All Products and Product Detail Page
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -10,6 +11,7 @@ Feature: Catalog & Search
     Then I should see the product detail page
     Then I should see product name, category, price, availability, condition, and brand
 
+  @smoke @sanity @regression
   Scenario: Search Product
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -18,6 +20,7 @@ Feature: Catalog & Search
     Then I should see the SEARCHED PRODUCTS heading
     And I should see all products related to the search
 
+  @regression
   Scenario: View Category Products
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -32,6 +35,7 @@ Feature: Catalog & Search
       | MEN      |
       | KIDS     |
 
+  @regression
   Scenario: View Brand Products
     Given I am on the web home page
     When I click on the Products button in the navbar
@@ -50,6 +54,7 @@ Feature: Catalog & Search
       | KOOKIE KIDS        |
       | BIBA               |
 
+  @regression
   Scenario: Add Review on Product
     Given I am on the web home page
     When I click on the Products button in the navbar
