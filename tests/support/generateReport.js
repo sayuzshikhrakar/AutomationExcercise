@@ -6,7 +6,7 @@ async function generateReport() {
 
     const browser = process.env.BROWSER || 'chromium';
     const reportsDir = path.join(__dirname, '../../reports');
-    const reportPath = path.join(reportsDir, `html-${browser}`);
+    const reportPath = path.join(reportsDir, `html-report`);
 
     fs.ensureDirSync(reportsDir);
     fs.ensureDirSync(reportPath);

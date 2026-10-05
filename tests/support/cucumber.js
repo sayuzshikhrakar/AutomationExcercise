@@ -4,7 +4,7 @@ const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 module.exports = {
     default: {
         paths: ['tests/feature/*.feature'],
-        require: ['tests/support/world.ts', 'tests/steps/**/*.ts', 'tests/steps/**/*.ts'],
+        require: ['tests/support/world.ts', 'tests/steps/**/*.ts'],
         format: ['pretty', `json:test-results/report-${browser}-${timestamp}.json`],
         requireModule: ['tsx'],
         format: [
@@ -13,7 +13,6 @@ module.exports = {
         ],
         formatOptions: {
             snipperInterface: 'async-await'
-        },
-        parallel: 1
+        }
     }
 };

@@ -137,9 +137,12 @@ Then('I should see I am logged in as freshly created account', async function (t
 
 When('I submit a name and an already registered email', async function (this: CustomWorld) {
     const loginPage = new WebLoginPage(this.page);
-    const fixturePath = path.join(__dirname, '../fixtures/testUser.json');
-    const { firstName, email } = fs.readJsonSync(fixturePath);
-    await loginPage.signUp(firstName, email);
+    const email = process.env.TEST_USER_EMAIL;
+    if (!email) throw new Error("TEST_USER_EMAIL not set in .env");
+    
+    // We can use a random name, but we MUST use the permanent email
+    const { randomFirstName } = generateRandomUser();
+    await loginPage.signUp(randomFirstName, email);
 })
 
 Then('I should see an email already exists error message', async function (this: CustomWorld) {
