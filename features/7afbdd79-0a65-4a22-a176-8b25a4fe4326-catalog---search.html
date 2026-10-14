@@ -1,0 +1,5138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiple Cucumber HTML Reporter</title>
+<link
+  rel="icon"
+  type="image/x-icon"
+  href="../assets/images/logo.png"
+>
+<link rel="stylesheet" href="../styles.min.css">
+
+  <script src="../assets/js/apex-charts.js"></script>
+  <link rel="stylesheet" href="../assets/css/font-awesome.css">
+
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+
+    <script>
+      (function () {
+        const theme =
+          localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <div class="w-full">
+      <!-- Header -->
+      <header class="border-b bg-background px-4 md:px-6 py-4 sticky top-0 z-40 backdrop-blur supports-backdrop-filter:bg-background/60">
+  <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3 truncate">
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 overflow-hidden">
+        
+          <i class="fa-solid fa-vial-circle-check text-xl"></i>
+        
+      </div>
+      <div class="text-balance">
+        <h1 class="text-lg md:text-2xl font-bold text-foreground text-balance tracking-tight">
+          Multiple Cucumber HTML Reporter
+        </h1>
+        <p class="mt-0.5 text-[10px] md:text-xs text-muted-foreground uppercase font-bold tracking-widest opacity-70">
+          Multiple Cucumber HTML Reporter
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" class="p-2 rounded-md hover:bg-accent transition-colors shrink-0">
+        <svg id="sun-icon" class="hidden h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/>
+        </svg>
+        <svg id="moon-icon" class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+      <!-- Main Content -->
+      <main class="space-y-6 px-6 py-8">
+        <div class="mx-auto max-w-7xl">
+          
+  <div class="space-y-6">
+    <!-- Back Button & Breadcrumbs -->
+    <div class="flex items-center gap-2 text-sm text-muted-foreground">
+      <a href="../index.html" class="hover:text-foreground transition-colors">Dashboard</a>
+      <span>/</span>
+      <span class="text-foreground font-medium">Feature Detail</span>
+    </div>
+
+    <!-- Feature Header -->
+    <div class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden">
+      <div class="p-4 md:p-6 flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+        <div class="space-y-4 flex-1">
+          <div class="space-y-2">
+            <h2 class="text-xl md:text-2xl font-bold text-foreground leading-tight">Catalog & Search</h2>
+            
+              <div class="flex flex-wrap gap-1.5">
+                
+                  <span class="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    @web
+                  </span>
+                
+              </div>
+            
+            
+          </div>
+
+          <div class="pt-2 border-t lg:border-t-0">
+            <div class="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-muted-foreground">
+  
+    
+    <span class="flex items-center gap-1.5" title="Local Test Machine">
+      <i
+        class="fa-solid fa-desktop text-primary text-base"
+      ></i>
+    </span>
+  
+  
+    
+    <span class="flex items-center gap-1.5" title="ubuntu 6.17.0-1022-azure">
+      <i
+        class="fa-brands fa-linux text-primary text-base"
+      ></i>
+    </span>
+  
+  
+    
+    <span class="flex items-center gap-1.5" title="chromium latest">
+      <i
+        class="fa-solid fa-globe text-primary text-base"
+      ></i>
+    </span>
+  
+  
+    <span class="flex items-center gap-1.5" title="runner">
+      <i class="fa-solid fa-user text-primary text-base"></i>
+      <span class="text-xs text-foreground font-medium">runner</span>
+    </span>
+  
+  
+    <span class="flex items-center gap-1.5" title="Node v24.21.0">
+      <i class="fa-brands fa-node-js text-primary text-base"></i>
+      <span class="text-xs text-foreground font-medium">v24.21.0</span>
+    </span>
+  
+  
+    <span class="flex items-center gap-1.5" title="Reporter 4.3.0">
+      <i class="fa-solid fa-code-branch text-primary text-base"></i>
+      <span class="text-xs text-foreground font-medium">4.3.0</span>
+    </span>
+  
+  
+    <span class="flex items-center gap-1.5" title="x64">
+      <i class="fa-solid fa-microchip text-primary text-base"></i>
+      <span class="text-xs text-foreground font-medium">x64</span>
+    </span>
+  
+
+  
+  
+  
+    <span class="flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1" title="Running locally">
+      <i class="fa-solid fa-computer text-primary text-sm"></i>
+    </span>
+  
+  
+
+  <div class="w-full my-2"></div>
+  
+    <span class="flex items-center gap-1.5 min-w-0 max-w-full" title="tests/feature/04_webProductPage.feature">
+      <i class="fa-solid fa-file-code text-primary text-base shrink-0"></i>
+      <span class="text-xs font-mono text-muted-foreground truncate">tests/feature/04_webProductPage.feature</span>
+    </span>
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+</div>
+
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-6 gap-3 md:gap-4 shrink-0 lg:ml-6 w-full sm:w-auto">
+          <div class="flex flex-col items-center justify-center bg-status-passed/10 rounded-xl py-3 px-3 border border-status-passed/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-passed leading-none">
+              13
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-passed/70 dark:text-status-passed/30 mt-1 tracking-wider">
+              Passed
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-status-failed/10 rounded-xl py-3 px-3 border border-status-failed/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-failed leading-none">
+              1
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-failed/70 dark:text-status-failed/30 mt-1 tracking-wider">
+              Failed
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-status-ambiguous/10 rounded-xl py-3 px-3 border border-status-ambiguous/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-ambiguous leading-none">
+              0
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-ambiguous/70 dark:text-status-ambiguous/30 mt-1 tracking-wider">
+              Ambiguous
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-status-undefined/10 rounded-xl py-3 px-3 border border-status-undefined/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-undefined leading-none">
+              0
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-undefined/70 dark:text-status-undefined/30 mt-1 tracking-wider">
+              Not Defined
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-status-pending/10 rounded-xl py-3 px-3 border border-status-pending/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-pending leading-none">
+              0
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-pending/70 dark:text-status-pending/30 mt-1 tracking-wider">
+              Pending
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-status-skipped/10 rounded-xl py-3 px-3 border border-status-skipped/20 w-full">
+            <div class="text-xl md:text-2xl font-bold text-status-skipped leading-none">
+              0
+            </div>
+            <div class="text-[9px] md:text-[10px] uppercase font-bold text-status-skipped/70 dark:text-status-skipped/30 mt-1 tracking-wider">
+              Skipped
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Rows -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Scenario Distribution</h3>
+        <div id="feature-scenarios-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">
+          Top 10 Slowest Scenarios
+        </h3>
+        <div id="slowest-scenarios-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Top 10 Slowest Steps</h3>
+        <div id="slowest-steps-chart" class="h-64"></div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Step Status Breakdown</h3>
+        <div id="feature-step-status-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Steps per Scenarios</h3>
+        <div id="feature-steps-per-scenario-chart" class="h-64"></div>
+      </div>
+      <div class="rounded-xl border bg-card text-card-foreground shadow p-6">
+        <h3 class="text-sm font-semibold mb-4 text-muted-foreground uppercase tracking-wider">Top 10 Tags</h3>
+        <div id="tag-distribution-chart" class="h-64"></div>
+      </div>
+    </div>
+
+    <!-- Scenarios -->
+    <div class="space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h3 class="text-xl font-bold text-foreground">Scenarios</h3>
+        <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+          <div class="relative w-full md:w-64">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input
+              type="text"
+              id="scenario-search"
+              placeholder="Search scenarios..."
+              class="w-full h-9 pl-9 pr-4 rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-shadow shadow-sm"
+            >
+          </div>
+          <!-- Tag Filter Dropdown -->
+          <div class="relative w-full md:w-56" id="scenario-tag-filter-container">
+            <button
+              type="button"
+              id="scenario-tag-filter-button"
+              class="flex items-center justify-between w-full h-9 px-3 rounded-md border border-input bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-shadow shadow-sm cursor-pointer"
+            >
+              <span class="truncate text-muted-foreground text-xs" id="scenario-tag-filter-label"
+                >Filter by tags...</span
+              >
+              <i class="fa-solid fa-chevron-down text-[10px] text-muted-foreground ml-2"></i>
+            </button>
+            <div
+              id="scenario-tag-filter-dropdown"
+              class="hidden absolute left-0 md:left-auto md:right-0 mt-1 w-full md:w-56 rounded-md border border-border bg-card text-card-foreground shadow-md z-50 max-h-60 overflow-y-auto p-1.5 space-y-1"
+            >
+              <!-- Dynamic tag options injected via JS -->
+            </div>
+          </div>
+          <div class="flex items-center gap-2 bg-muted/30 p-1 rounded-lg border w-full md:w-auto overflow-x-auto">
+            <button
+              class="status-filter cursor-pointer active bg-background shadow-sm border border-primary ring-2 ring-primary/20 px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm"
+              data-status="all"
+            >
+              ALL
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-passed dark:text-status-passed"
+              data-status="passed"
+            >
+              PASSED
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-failed dark:text-status-failed"
+              data-status="failed"
+            >
+              FAILED
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-ambiguous dark:text-status-ambiguous"
+              data-status="ambiguous"
+            >
+              AMBIGUOUS
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-undefined dark:text-status-undefined"
+              data-status="undefined"
+            >
+              NOT DEFINED
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-pending dark:text-status-pending"
+              data-status="pending"
+            >
+              PENDING
+            </button>
+            <button
+              class="status-filter cursor-pointer border border-transparent px-4 py-1.5 rounded-md text-[10px] md:text-xs font-bold transition-all hover:bg-background hover:shadow-sm text-status-skipped dark:text-status-skipped"
+              data-status="skipped"
+            >
+              SKIPPED
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="no-scenarios-message" class="hidden py-12 text-center bg-muted/20 rounded-xl border border-dashed">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-muted mb-4">
+          <i class="fa-solid fa-magnifying-glass text-muted-foreground"></i>
+        </div>
+        <h4 class="text-sm font-semibold text-foreground">No scenario found</h4>
+        <p class="text-xs text-muted-foreground mt-1">Try adjusting your filters or search terms.</p>
+      </div>
+      <div id="scenarios-container" class="space-y-4">
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@smoke,@sanity,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">Verify All Products and Product Detail Page</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@smoke</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@sanity</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.713</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.644</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.844</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.564</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the product list</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.336</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I click View Product on the first product</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.749</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the product detail page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.359</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see product name, category, price, availability, condition, and brand</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.214</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@smoke,@sanity,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">Search Product</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@smoke</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@sanity</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:03.810</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.357</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.587</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.489</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I enter a product name and search</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.065</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the SEARCHED PRODUCTS heading</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.185</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">And </span>
+                <span>I should see all products related to the search</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.124</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Category Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:05.504</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:02.616</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.748</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.386</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see categories on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.078</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the "WOMEN" category and select a sub-category</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.557</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the "WOMEN" category page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.117</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Category Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:05.928</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:03.712</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.794</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.300</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see categories on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.077</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the "MEN" category and select a sub-category</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.877</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the "MEN" category page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.166</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+  
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="failed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-xmark text-xl md:text-2xl shrink-0 text-status-failed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Category Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:05.696</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.382</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-xmark mt-0.5 shrink-0 text-status-failed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:05.011</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+                <div
+                  class="mt-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-[11px] font-mono text-red-600 dark:text-red-400 overflow-hidden line-clamp-6 whitespace-pre-wrap cursor-pointer modal-trigger hover:bg-red-500/20 transition-colors group relative"
+                  data-attachment-type="error"
+                  data-attachment-name="Error details"
+                  data-attachment-content="Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole(&#39;link&#39;, { name: &#39;Products&#39; })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect &#34;toBeVisible&#34; getByRole(&#39;link&#39;, { name: &#39;Products&#39; }) with timeout 5000ms
+  - waiting for getByRole(&#39;link&#39;, { name: &#39;Products&#39; })
+
+    at captureRawStack (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright-core/lib/coreBundle.js:8588:17)
+    at callMatcherAsStep (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toBeVisible (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13302:23)
+    at WebHomePage.clickProducts (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/pages/webHomePage.ts:33:37)
+    at CustomWorld.&lt;anonymous&gt; (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/steps/webHomePage.steps.ts:15:20)"
+                >
+                  <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                  </div>
+                  Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole(&#39;link&#39;, { name: &#39;Products&#39; })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect &#34;toBeVisible&#34; getByRole(&#39;link&#39;, { name: &#39;Products&#39; }) with timeout 5000ms
+  - waiting for getByRole(&#39;link&#39;, { name: &#39;Products&#39; })
+
+    at captureRawStack (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright-core/lib/coreBundle.js:8588:17)
+    at callMatcherAsStep (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toBeVisible (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13302:23)
+    at WebHomePage.clickProducts (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/pages/webHomePage.ts:33:37)
+    at CustomWorld.&lt;anonymous&gt; (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/steps/webHomePage.steps.ts:15:20)
+                </div>
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-right mt-0.5 shrink-0 text-status-skipped"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-right mt-0.5 shrink-0 text-status-skipped"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see categories on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-right mt-0.5 shrink-0 text-status-skipped"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the "KIDS" category and select a sub-category</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-right mt-0.5 shrink-0 text-status-skipped"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the "KIDS" category page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.302</p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+                
+              
+
+              
+              
+                
+              
+
+              
+                <div class="mt-3 space-y-2 bg-background/50 p-3 rounded border border-muted">
+                  <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Attachments</p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    
+                      
+                      <div
+                        class="flex items-center justify-between gap-2 bg-background p-2 rounded border border-muted/50 text-xs hover:border-primary/50 transition-colors cursor-pointer modal-trigger"
+                        data-attachment-type="screenshot"
+                        data-attachment-name="Screenshot - 1"
+                        data-attachment-content="data:image/png;base64,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AAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAAAbJgAEAAAAAA2TAAIAAAAABsmAAQAAACADRMAAgAAAMCGCQABAAAAYMMEgAAAAACwYQJAAAAAANgwASAAAAD8v3bsQAYAAABgkL/1Pb7CCGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGBMAAIAAADAmAAEAAAAgDEBCAAAAABjAhAAAAAAxgQgAAAAAIwJQAAAAAAYE4AAAAAAMCYAAQAAAGAsDj67BVDsBLUAAAAASUVORK5CYII="
+                        
+                      >
+                        <div class="flex items-center gap-2">
+                          <svg class="h-4 w-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                          </svg>
+                          <span class="font-medium cursor-pointer">Screenshot 1</span>
+                        </div>
+                        <svg
+                          class="h-3 w-3 text-muted-foreground outline-none"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                      </div>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:05.272</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:02.716</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.929</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.094</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "POLO" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.151</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "POLO" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.379</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:05.240</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:02.422</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.982</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.182</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "H&M" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.572</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "H&M" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.081</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:03.480</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.498</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.545</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.424</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "MADAME" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.622</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "MADAME" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.389</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.241</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.712</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.699</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.634</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "MAST & HARBOUR" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.757</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "MAST & HARBOUR" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.436</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.328</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.661</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.596</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.504</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "BABYHUG" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.275</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "BABYHUG" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.290</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.176</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.621</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.154</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.280</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "ALLEN SOLLY JUNIOR" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.834</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "ALLEN SOLLY JUNIOR" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.284</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:06.427</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:03.008</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.318</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.389</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "KOOKIE KIDS" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.462</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "KOOKIE KIDS" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.248</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">View Brand Products</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.248</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:01.881</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.884</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Brands section on the left sidebar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.318</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on a "BIBA" name</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.800</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to that "BIBA" page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.362</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+          
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+<div
+  class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden scenario-card"
+  data-status="passed"
+  data-tags="@web,@regression"
+>
+  <button
+    class="w-full text-left px-4 md:px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+    onclick="this.nextElementSibling.classList.toggle('hidden')"
+  >
+    <div class="flex items-center gap-3 overflow-hidden">
+      
+        <i class="fa-solid fa-circle-check text-xl md:text-2xl shrink-0 text-status-passed"></i>
+      
+
+      <div class="truncate">
+        <h4 class="font-bold text-sm md:text-base truncate">Add Review on Product</h4>
+        
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@web</span>
+            
+              <span class="text-[9px] md:text-[10px] font-medium text-muted-foreground">@regression</span>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:gap-4 shrink-0 ml-2">
+      <span class="font-mono text-[10px] md:text-xs text-muted-foreground">00:00:04.912</span>
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </button>
+  <div class="hidden border-t divide-y divide-border">
+    
+
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Before</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Given </span>
+                <span>I am on the web home page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:02.306</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click on the Products button in the navbar</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.942</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should be navigated to the ALL PRODUCTS page</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.292</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I click View Product on the first product</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.782</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the Write Your Review section</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.143</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">When </span>
+                <span>I submit a review with name, email, and review text</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.392</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">Then </span>
+                <span>I should see the review success message</span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono">00:00:00.052</p>
+
+              
+
+              
+                
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="px-6 py-4 bg-muted/20">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start gap-3 w-full">
+            
+              <i class="fa-solid fa-circle-check mt-0.5 shrink-0 text-status-passed"></i>
+            
+            <div class="w-full">
+              <p class="text-sm">
+                <span class="font-bold text-foreground">After</span>
+                <span></span>
+                
+              </p>
+              <p class="text-[10px] text-muted-foreground mt-1 font-mono"></p>
+
+              
+
+              
+
+              
+
+              
+
+              
+              
+
+              
+              
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Report-wide UI config (opt-in features toggled from the reporter options)
+    window.ReportConfig = Object.assign({}, window.ReportConfig, {
+        displayChartPercentages: false,
+        modalBackdrop: true,
+        modalDraggable: false,
+        modalResizable: false,
+        modalShowContext: false
+    });
+
+    // Embedded data for charts (status/duration/tags only — never embeddings,
+    // which would make this inline blob scale with attachment size)
+    const featureData = {"description":"","elements":[{"description":"","id":"catalog-&-search;verify-all-products-and-product-detail-page","keyword":"Scenario","line":5,"name":"Verify All Products and Product Detail Page","steps":[{"result":{"status":"passed","duration":322631440},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1644487392},"arguments":[],"keyword":"Given ","line":6,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.644"},{"result":{"status":"passed","duration":844738647},"arguments":[],"keyword":"When ","line":7,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.844"},{"result":{"status":"passed","duration":564721590},"arguments":[],"keyword":"Then ","line":8,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.564"},{"result":{"status":"passed","duration":336130141},"arguments":[],"keyword":"Then ","line":9,"name":"I should see the product list","match":{"location":"tests/steps/webProducts.steps.ts:7"},"time":"00:00:00.336"},{"result":{"status":"passed","duration":749829130},"arguments":[],"keyword":"Then ","line":10,"name":"I click View Product on the first product","match":{"location":"tests/steps/webProducts.steps.ts:12"},"time":"00:00:00.749"},{"result":{"status":"passed","duration":359003537},"arguments":[],"keyword":"Then ","line":11,"name":"I should see the product detail page","match":{"location":"tests/steps/webProducts.steps.ts:17"},"time":"00:00:00.359"},{"result":{"status":"passed","duration":214892200},"arguments":[],"keyword":"Then ","line":12,"name":"I should see product name, category, price, availability, condition, and brand","match":{"location":"tests/steps/webProducts.steps.ts:22"},"time":"00:00:00.214"},{"result":{"status":"passed","duration":557039450},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@smoke","line":4},{"name":"@sanity","line":4},{"name":"@regression","line":4}],"type":"scenario","duration":4.713802637,"time":"00:00:04.713","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;search-product","keyword":"Scenario","line":15,"name":"Search Product","steps":[{"result":{"status":"passed","duration":395738788},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1357917424},"arguments":[],"keyword":"Given ","line":16,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.357"},{"result":{"status":"passed","duration":587241355},"arguments":[],"keyword":"When ","line":17,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.587"},{"result":{"status":"passed","duration":489377936},"arguments":[],"keyword":"Then ","line":18,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.489"},{"result":{"status":"passed","duration":1065411051},"arguments":[],"keyword":"When ","line":19,"name":"I enter a product name and search","match":{"location":"tests/steps/webProducts.steps.ts:29"},"time":"00:00:01.065"},{"result":{"status":"passed","duration":185665529},"arguments":[],"keyword":"Then ","line":20,"name":"I should see the SEARCHED PRODUCTS heading","match":{"location":"tests/steps/webProducts.steps.ts:37"},"time":"00:00:00.185"},{"result":{"status":"passed","duration":124876854},"arguments":[],"keyword":"And ","line":21,"name":"I should see all products related to the search","match":{"location":"tests/steps/webProducts.steps.ts:42"},"time":"00:00:00.124"},{"result":{"status":"passed","duration":792463077},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@smoke","line":14},{"name":"@sanity","line":14},{"name":"@regression","line":14}],"type":"scenario","duration":3.810490149,"time":"00:00:03.810","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":34,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":440012977},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":2616369064},"arguments":[],"keyword":"Given ","line":25,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:02.616"},{"result":{"status":"passed","duration":748547770},"arguments":[],"keyword":"When ","line":26,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.748"},{"result":{"status":"passed","duration":386225009},"arguments":[],"keyword":"Then ","line":27,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.386"},{"result":{"status":"passed","duration":78783003},"arguments":[],"keyword":"Then ","line":28,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"},"time":"00:00:00.078"},{"result":{"status":"passed","duration":1557082453},"arguments":[],"keyword":"When ","line":29,"name":"I click on the \"WOMEN\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"},"time":"00:00:01.557"},{"result":{"status":"passed","duration":117389326},"arguments":[],"keyword":"Then ","line":30,"name":"I should see the \"WOMEN\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"},"time":"00:00:00.117"},{"result":{"status":"passed","duration":614434579},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":23}],"type":"scenario","duration":5.504396625,"time":"00:00:05.504","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":35,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":287466870},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":3712342427},"arguments":[],"keyword":"Given ","line":25,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:03.712"},{"result":{"status":"passed","duration":794301465},"arguments":[],"keyword":"When ","line":26,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.794"},{"result":{"status":"passed","duration":300896314},"arguments":[],"keyword":"Then ","line":27,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.300"},{"result":{"status":"passed","duration":77445501},"arguments":[],"keyword":"Then ","line":28,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"},"time":"00:00:00.077"},{"result":{"status":"passed","duration":877893529},"arguments":[],"keyword":"When ","line":29,"name":"I click on the \"MEN\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"},"time":"00:00:00.877"},{"result":{"status":"passed","duration":166031373},"arguments":[],"keyword":"Then ","line":30,"name":"I should see the \"MEN\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"},"time":"00:00:00.166"},{"result":{"status":"passed","duration":837775563},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":23}],"type":"scenario","duration":5.928910609,"time":"00:00:05.928","passed":6,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-category-products","keyword":"Scenario","line":36,"name":"View Category Products","steps":[{"result":{"status":"passed","duration":354348727},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":382420514},"arguments":[],"keyword":"Given ","line":25,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:00.382"},{"result":{"status":"failed","duration":5011378764,"error_message":"Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('link', { name: 'Products' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('link', { name: 'Products' }) with timeout 5000ms\n  - waiting for getByRole('link', { name: 'Products' })\n\n    at captureRawStack (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright-core/lib/coreBundle.js:8588:17)\n    at callMatcherAsStep (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toBeVisible (/home/runner/work/AutomationExcercise/AutomationExcercise/node_modules/playwright/lib/matchers/expect.js:13302:23)\n    at WebHomePage.clickProducts (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/pages/webHomePage.ts:33:37)\n    at CustomWorld.<anonymous> (/home/runner/work/AutomationExcercise/AutomationExcercise/tests/steps/webHomePage.steps.ts:15:20)"},"arguments":[],"keyword":"When ","line":26,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:05.011"},{"result":{"status":"skipped","duration":0},"arguments":[],"keyword":"Then ","line":27,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"}},{"result":{"status":"skipped","duration":0},"arguments":[],"keyword":"Then ","line":28,"name":"I should see categories on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:49"}},{"result":{"status":"skipped","duration":0},"arguments":[],"keyword":"When ","line":29,"name":"I click on the \"KIDS\" category and select a sub-category","match":{"location":"tests/steps/webProducts.steps.ts:54"}},{"result":{"status":"skipped","duration":0},"arguments":[],"keyword":"Then ","line":30,"name":"I should see the \"KIDS\" category page","match":{"location":"tests/steps/webProducts.steps.ts:70"}},{"result":{"status":"passed","duration":302436341},"keyword":"After","hidden":true,"embeddings":[{}],"attachments":[],"image":["data:image/png;base64,"],"imageNames":[null],"time":"00:00:00.302"}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":23}],"type":"scenario","duration":5.696235619,"time":"00:00:05.696","passed":2,"failed":1,"notDefined":0,"skipped":4,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":48,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":233200489},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":2716485636},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:02.716"},{"result":{"status":"passed","duration":929772415},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.929"},{"result":{"status":"passed","duration":94269557},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.094"},{"result":{"status":"passed","duration":1151995854},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"POLO\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:01.151"},{"result":{"status":"passed","duration":379978831},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"POLO\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.379"},{"result":{"status":"passed","duration":870567242},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":5.272502293,"time":"00:00:05.272","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":49,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":326886463},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":2422234473},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:02.422"},{"result":{"status":"passed","duration":982824697},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.982"},{"result":{"status":"passed","duration":182016618},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.182"},{"result":{"status":"passed","duration":1572067917},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"H&M\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:01.572"},{"result":{"status":"passed","duration":81754333},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"H&M\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.081"},{"result":{"status":"passed","duration":1084709440},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":5.240898038,"time":"00:00:05.240","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":50,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":389622260},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1498828378},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.498"},{"result":{"status":"passed","duration":545786220},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.545"},{"result":{"status":"passed","duration":424207521},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.424"},{"result":{"status":"passed","duration":622041900},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"MADAME\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.622"},{"result":{"status":"passed","duration":389379648},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"MADAME\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.389"},{"result":{"status":"passed","duration":772301588},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":3.4802436670000003,"time":"00:00:03.480","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":51,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":516011301},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1712431258},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.712"},{"result":{"status":"passed","duration":699765717},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.699"},{"result":{"status":"passed","duration":634713605},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.634"},{"result":{"status":"passed","duration":757523120},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"MAST & HARBOUR\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.757"},{"result":{"status":"passed","duration":436627774},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"MAST & HARBOUR\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.436"},{"result":{"status":"passed","duration":731859576},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":4.241061474,"time":"00:00:04.241","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":52,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":380141906},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1661870764},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.661"},{"result":{"status":"passed","duration":596082561},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.596"},{"result":{"status":"passed","duration":504610860},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.504"},{"result":{"status":"passed","duration":1275616480},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"BABYHUG\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:01.275"},{"result":{"status":"passed","duration":290802969},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"BABYHUG\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.290"},{"result":{"status":"passed","duration":781655955},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":4.328983634,"time":"00:00:04.328","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":53,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":375656964},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1621608982},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.621"},{"result":{"status":"passed","duration":1154495550},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:01.154"},{"result":{"status":"passed","duration":280938732},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.280"},{"result":{"status":"passed","duration":834017330},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"ALLEN SOLLY JUNIOR\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.834"},{"result":{"status":"passed","duration":284975079},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"ALLEN SOLLY JUNIOR\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.284"},{"result":{"status":"passed","duration":568055741},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":4.176035673,"time":"00:00:04.176","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":54,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":333720646},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":3008273066},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:03.008"},{"result":{"status":"passed","duration":1318864300},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:01.318"},{"result":{"status":"passed","duration":389038582},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.389"},{"result":{"status":"passed","duration":1462264307},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"KOOKIE KIDS\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:01.462"},{"result":{"status":"passed","duration":248893370},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"KOOKIE KIDS\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.248"},{"result":{"status":"passed","duration":1002648754},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":6.427333625,"time":"00:00:06.427","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;view-brand-products","keyword":"Scenario","line":55,"name":"View Brand Products","steps":[{"result":{"status":"passed","duration":346181313},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":1881884159},"arguments":[],"keyword":"Given ","line":40,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:01.881"},{"result":{"status":"passed","duration":884513981},"arguments":[],"keyword":"When ","line":41,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.884"},{"result":{"status":"passed","duration":318828549},"arguments":[],"keyword":"Then ","line":42,"name":"I should see the Brands section on the left sidebar","match":{"location":"tests/steps/webProducts.steps.ts:77"},"time":"00:00:00.318"},{"result":{"status":"passed","duration":800890363},"arguments":[],"keyword":"When ","line":43,"name":"I click on a \"BIBA\" name","match":{"location":"tests/steps/webProducts.steps.ts:82"},"time":"00:00:00.800"},{"result":{"status":"passed","duration":362681530},"arguments":[],"keyword":"Then ","line":44,"name":"I should be navigated to that \"BIBA\" page","match":{"location":"tests/steps/webProducts.steps.ts:88"},"time":"00:00:00.362"},{"result":{"status":"passed","duration":899956368},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":38}],"type":"scenario","duration":4.248798582,"time":"00:00:04.248","passed":5,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0},{"description":"","id":"catalog-&-search;add-review-on-product","keyword":"Scenario","line":58,"name":"Add Review on Product","steps":[{"result":{"status":"passed","duration":452226073},"keyword":"Before","hidden":true},{"result":{"status":"passed","duration":2306739556},"arguments":[],"keyword":"Given ","line":59,"name":"I am on the web home page","match":{"location":"tests/steps/webHomePage.steps.ts:8"},"time":"00:00:02.306"},{"result":{"status":"passed","duration":942781798},"arguments":[],"keyword":"When ","line":60,"name":"I click on the Products button in the navbar","match":{"location":"tests/steps/webHomePage.steps.ts:13"},"time":"00:00:00.942"},{"result":{"status":"passed","duration":292792543},"arguments":[],"keyword":"Then ","line":61,"name":"I should be navigated to the ALL PRODUCTS page","match":{"location":"tests/steps/webHomePage.steps.ts:18"},"time":"00:00:00.292"},{"result":{"status":"passed","duration":782122847},"arguments":[],"keyword":"When ","line":62,"name":"I click View Product on the first product","match":{"location":"tests/steps/webProducts.steps.ts:12"},"time":"00:00:00.782"},{"result":{"status":"passed","duration":143285910},"arguments":[],"keyword":"Then ","line":63,"name":"I should see the Write Your Review section","match":{"location":"tests/steps/webProducts.steps.ts:93"},"time":"00:00:00.143"},{"result":{"status":"passed","duration":392528642},"arguments":[],"keyword":"When ","line":64,"name":"I submit a review with name, email, and review text","match":{"location":"tests/steps/webProducts.steps.ts:98"},"time":"00:00:00.392"},{"result":{"status":"passed","duration":52285564},"arguments":[],"keyword":"Then ","line":65,"name":"I should see the review success message","match":{"location":"tests/steps/webProducts.steps.ts:104"},"time":"00:00:00.052"},{"result":{"status":"passed","duration":666211980},"keyword":"After","hidden":true}],"tags":[{"name":"@web","line":1},{"name":"@regression","line":57}],"type":"scenario","duration":4.91253686,"time":"00:00:04.912","passed":7,"failed":0,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0}],"id":"7afbdd79-0a65-4a22-a176-8b25a4fe4326-catalog---search","line":2,"keyword":"Feature","name":"Catalog & Search","tags":[{"name":"@web","line":1}],"uri":"tests/feature/04_webProductPage.feature","metadata":{"browser":{"name":"chromium","version":"latest"},"executionPlatform":"local","username":"runner","device":"Local Test Machine","platform":{"name":"ubuntu","version":"6.17.0-1022-azure"},"nodeVersion":"v24.21.0","reportVersion":"4.3.0","hostname":"runnervmmprz5","architecture":"x64","customDate":{"title":"Run Information","data":[{"label":"Project","value":"Automation Exercise Web Suite"},{"label":"Browser","value":"CHROMIUM"},{"label":"Execution Date","value":"10/14/2026, 5:30:38 PM"}]}},"scenarios":{"passed":13,"failed":1,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"passedPercentage":"92.86","failedPercentage":"7.14","notDefinedPercentage":"0.00","skippedPercentage":"0.00","pendingPercentage":"0.00","ambiguousPercentage":"0.00","total":14},"duration":67982229485,"time":"00:01:07.982","isFailed":true,"isAmbiguous":false,"isSkipped":false,"isNotdefined":false,"isPending":false,"passed":13,"failed":1,"notDefined":0,"skipped":0,"pending":0,"ambiguous":0,"totalTime":67982229485,"app":"","browser":"chromium latest","device":"Local Test Machine","executionPlatform":"local","os":"ubuntu 6.17.0-1022-azure","username":"runner"};
+  </script>
+
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t bg-background px-6 py-4 mt-8">
+  <div class="mx-auto max-w-7xl text-center">
+    
+      <p class="text-xs text-muted-foreground">
+        Generated by
+        <a
+          href="https://github.com/WasiqB/multiple-cucumber-html-reporter"
+          target="_blank"
+          class="text-primary hover:underline"
+          >Multiple Cucumber HTML Reporter</a
+        >
+      </p>
+      <p class="text-xs text-muted-foreground mt-2">
+        Built with ❤️ by
+        <a href="https://wasiqbhamla.com/" target="_blank" class="text-primary hover:underline font-semibold"
+          >Wasiq Bhamla</a
+        >
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://github.com/WasiqB"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-github mr-0.5"></i
+        ></a>
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://x.com/WasiqBhamla"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-x-twitter mr-0.5"></i
+        ></a>
+        <span class="mx-1.5 text-muted-foreground/50">•</span>
+        <a
+          href="https://www.linkedin.com/in/wasiqbhamla/"
+          target="_blank"
+          class="text-muted-foreground hover:text-primary transition-colors"
+          ><i class="fa-brands fa-linkedin mr-0.5"></i
+        ></a>
+      </p>
+    
+  </div>
+</footer>
+
+    </div>
+
+    <!-- Media Modal -->
+    
+
+
+
+
+  <div
+    id="media-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    onclick="closeModal()"
+  >
+    <div
+      class="relative w-full max-w-4xl max-h-[90vh] bg-background rounded-lg shadow-lg flex flex-col overflow-hidden"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b p-4 text-card-foreground">
+        <h2 id="modal-title" class="text-lg font-semibold truncate mr-4">Attachment</h2>
+        <button onclick="closeModal()" class="rounded-lg p-1 hover:bg-muted transition-colors">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div id="modal-content" class="overflow-auto flex-1 p-4 bg-muted/10">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+
+
+    <script src="../scripts/utils.js"></script>
+<script src="../scripts/theme.js"></script>
+<script src="../scripts/modal.js"></script>
+<script src="../scripts/charts.js"></script>
+<script src="../scripts/table.js"></script>
+<script src="../scripts/scenarios.js"></script>
+<script src="../scripts/main.js"></script>
+
+
+  </body>
+</html>
