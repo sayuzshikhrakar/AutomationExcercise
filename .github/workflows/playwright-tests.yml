@@ -24,16 +24,21 @@ jobs:
       run: npm ci
       
     - name: Install Playwright Browsers
-      # Only installing chromium to match the test script we are running
-      run: npx playwright install --with-deps chromium
+      run: npx playwright install --with-deps chromium firefox
 
-    - name: Create .env.chromium file
+    - name: Create .env.chromium and .env.firefox files
       run: |
         echo "BROWSER=chromium" >> .env.chromium
         echo "WEB_URL=https://automationexercise.com" >> .env.chromium
         echo "HEADLESS=true" >> .env.chromium
         echo "TEST_USER_EMAIL=${{ secrets.TEST_USER_EMAIL }}" >> .env.chromium
         echo "TEST_USER_PASSWORD=${{ secrets.TEST_USER_PASSWORD }}" >> .env.chromium
+
+        echo "BROWSER=firefox" >> .env.firefox
+        echo "WEB_URL=https://automationexercise.com" >> .env.firefox
+        echo "HEADLESS=true" >> .env.firefox
+        echo "TEST_USER_EMAIL=${{ secrets.TEST_USER_EMAIL }}" >> .env.firefox
+        echo "TEST_USER_PASSWORD=${{ secrets.TEST_USER_PASSWORD }}" >> .env.firefox
       
     - name: Run Playwright tests
       run: npm run test:all
@@ -72,5 +77,5 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: Automation Test Results (${{ job.status }})
         to: sayuzshikhrakar@gmail.com,sayuz6819@gmail.com
-        from: GitHub Actions
+        from: ${{ secrets.EMAIL_USERNAME }}
         body: "The Playwright test run has completed with status - ${{ job.status }}. You can view the full interactive dashboard here: https://sayuzshikhrakar.github.io/AutomationExcercise/"

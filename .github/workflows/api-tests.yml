@@ -24,6 +24,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+
     - name: Create .env.chromium file
       run: |
         echo "BROWSER=chromium" >> .env.chromium
@@ -57,6 +60,6 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: API Automation Test Results (${{ job.status }})
         to: sayuzshikhrakar@gmail.com,sayuz6819@gmail.com
-        from: GitHub Actions
+        from: ${{ secrets.EMAIL_USERNAME }}
         body: "The API test run has completed with status - ${{ job.status }}."
         attachments: api-report.zip
