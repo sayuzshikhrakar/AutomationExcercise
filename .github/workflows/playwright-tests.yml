@@ -63,10 +63,6 @@ jobs:
         publish_dir: reports/html-report/
         keep_files: true
 
-    - name: Zip the HTML report
-      if: always()
-      run: zip -r playwright-report.zip reports/html-report/
-
     - name: Send Email with Report
       uses: dawidd6/action-send-mail@v3
       if: always()

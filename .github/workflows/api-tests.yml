@@ -46,11 +46,7 @@ jobs:
         path: reports/html-report/
         retention-days: 30
 
-    - name: Zip the HTML report
-      if: always()
-      run: zip -r api-report.zip reports/html-report/
-
-    - name: Send Email with Report
+    - name: Send Email with Report Status
       uses: dawidd6/action-send-mail@v3
       if: always()
       with:
@@ -61,5 +57,4 @@ jobs:
         subject: API Automation Test Results (${{ job.status }})
         to: sayuzshikhrakar@gmail.com,sayuz6819@gmail.com
         from: ${{ secrets.EMAIL_USERNAME }}
-        body: "The API test run has completed with status - ${{ job.status }}."
-        attachments: api-report.zip
+        body: "The API test run has completed with status: ${{ job.status }}. You can download the full HTML report artifact from the GitHub Actions run summary."
