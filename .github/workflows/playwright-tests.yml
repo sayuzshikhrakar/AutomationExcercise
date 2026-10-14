@@ -47,7 +47,7 @@ jobs:
       if: always()
       with:
         name: playwright-report
-        path: reports/html-chromium/
+        path: reports/html-report/
         retention-days: 30
 
     - name: Deploy Report to GitHub Pages
@@ -55,12 +55,12 @@ jobs:
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: reports/html-chromium/
+        publish_dir: reports/html-report/
         keep_files: true
 
     - name: Zip the HTML report
       if: always()
-      run: zip -r playwright-report.zip reports/html-chromium/
+      run: zip -r playwright-report.zip reports/html-report/
 
     - name: Send Email with Report
       uses: dawidd6/action-send-mail@v3
