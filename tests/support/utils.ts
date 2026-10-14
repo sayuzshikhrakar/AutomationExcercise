@@ -1,4 +1,7 @@
 import { Page, expect, Locator } from '@playwright/test';
+import { generateRandomUser } from './faker';
+import testSignupInfo from '../fixtures/testSignupInfo.json'
+import testUserUpdateInfo from '../fixtures/testUserUpdate.json';
 
 export async function extractAllProductsInPage(page: Page) {
     await page.waitForSelector('.productinfo');
@@ -34,3 +37,89 @@ export async function getInneText(locator: Locator) {
     return await locator.innerText();
 
 }
+
+export async function createUserPayload() {
+    const { randomFirstName, randomLastName, randomEmail } = generateRandomUser();
+
+    const { title,
+        password,
+        day,
+        month,
+        year,
+        company,
+        address1,
+        address2,
+        country,
+        state,
+        city,
+        zipcode,
+        mobileNumber } = testSignupInfo;
+
+    const testUserData = {
+        name: randomFirstName,
+        email: randomEmail,
+        password: password,
+        title: title,
+        birth_date: day,
+        birth_month: month,
+        birth_year: year,
+        firstname: randomFirstName,
+        lastname: randomLastName,
+        company: company,
+        address1: address1,
+        address2: address2,
+        country: country,
+        zipcode: zipcode,
+        state: state,
+        city: city,
+        mobile_number: mobileNumber,
+
+
+    };
+    return testUserData;
+
+
+}
+
+
+export async function UpdateUserPayload(createdEmail?: string, createdPassword?: string) {
+    const { randomFirstName, randomLastName, randomEmail } = generateRandomUser();
+
+    const { title,
+        password,
+        day,
+        month,
+        year,
+        company,
+        address1,
+        address2,
+        country,
+        state,
+        city,
+        zipcode,
+        mobileNumber } = testUserUpdateInfo;
+
+    const testUserData = {
+        name: randomFirstName,
+        email: createdEmail ?? randomEmail,
+        password: createdPassword ?? password,
+        title: title,
+        birth_date: day,
+        birth_month: month,
+        birth_year: year,
+        firstname: randomFirstName,
+        lastname: randomLastName,
+        company: company,
+        address1: address1,
+        address2: address2,
+        country: country,
+        zipcode: zipcode,
+        state: state,
+        city: city,
+        mobile_number: mobileNumber,
+    };
+    return testUserData;
+
+
+}
+
