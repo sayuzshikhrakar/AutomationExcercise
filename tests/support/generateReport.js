@@ -13,10 +13,12 @@ async function generateReport() {
     fs.ensureDirSync(jsonDir);
     fs.ensureDirSync(reportPath);
 
+    const isCI = process.env.CI === 'true';
+
     report.generate({
         jsonDir: jsonDir,
         reportPath: reportPath,
-        openReportInBrowser: true,
+        openReportInBrowser: !isCI,
         displayDuration: true,
         metadata: {
             browser: {
