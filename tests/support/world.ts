@@ -1,5 +1,5 @@
 import { setWorldConstructor, World, IWorldOptions, Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from '@cucumber/cucumber';
-import { Browser, BrowserContext, Page, chromium, firefox, webkit } from '@playwright/test';
+import { APIRequestContext, APIResponse, Browser, BrowserContext, Page, chromium, firefox, webkit } from '@playwright/test';
 
 setDefaultTimeout(30 * 10000);
 
@@ -10,6 +10,10 @@ export interface CustomWorldContext extends World {
     targetUrl: string;
     randomProduct?: any;
     selectedSubCategory?: string;
+    apiRequestContext?: APIRequestContext;
+    apiResponse?: APIResponse;
+    apiResponseBody?: unknown;
+    currentUser?: any;
 }
 
 
@@ -21,6 +25,10 @@ export class CustomWorld extends World implements CustomWorldContext {
     randomProduct?: any;
     selectedSubCategory?: string;
     selectedBrand?: string;
+    apiRequestContext?: APIRequestContext;
+    apiResponse?: APIResponse;
+    apiResponseBody?: unknown;
+    currentUser?: any;
 
     constructor(options: IWorldOptions) {
         super(options);
@@ -49,17 +57,8 @@ BeforeAll(async function () {
     }
 });
 
-Before(async function (this: CustomWorld, scenario) {
-    const tags = scenario.pickle.tags.map((t) => t.name.toLowerCase());
-
-    //App routing verification per Skill.md
-    const isWebScenario = tags.some((t) => t.startsWith('@web'));
-    if (!isWebScenario) {
-        throw new Error(`No app tag found for scenario:"${scenario.pickle}". Expected @web* tag.`);
-    }
+Before({ tags: "@web" }, async function (this: CustomWorld, scenario) {
     this.targetUrl = process.env.WEB_URL || 'https://automationexercise.com';
-
-    //Instantiate context & Page
     this.context = await globalBrowser.newContext({
         viewport: { width: 1280, height: 720 },
         baseURL: this.targetUrl
@@ -81,7 +80,7 @@ Before(async function (this: CustomWorld, scenario) {
     });
 });
 
-After(async function (this: CustomWorld, scenario) {
+After({ tags: "@web" }, async function (this: CustomWorld, scenario) {
     //Capture scerenshot on failure
     if (scenario.result?.status === Status.FAILED && this.page) {
         const screenshot = await this.page.screenshot({

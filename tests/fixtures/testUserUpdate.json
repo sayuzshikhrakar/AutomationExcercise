@@ -1,0 +1,17 @@
+{
+    "title": "Mrs.",
+    "password": "UpdatedPassword123!",
+    "day": "20",
+    "month": "June",
+    "year": "1998",
+    "newsletter": true,
+    "specialOffers": true,
+    "company": "Updated Automation Corp",
+    "address1": "456 Updated Avenue",
+    "address2": "Apt 2B",
+    "country": "United States",
+    "state": "New York",
+    "city": "New York",
+    "zipcode": "10001",
+    "mobileNumber": "9876543211"
+}
